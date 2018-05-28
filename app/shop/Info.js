@@ -21,7 +21,7 @@ export default class Info extends Component {
     _createAreaData() {
         let data = [];
         let len = area.length;
-        for(let i=0;i<len;i++){
+        for(let i=0;i<len;i++){         
             let city = [];
             for(let j=0,cityLen=area[i]['city'].length;j<cityLen;j++){
                 let _city = {};
