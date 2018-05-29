@@ -17,7 +17,7 @@ export default class Bottom extends Component {
     render() {
         return(
             <View style={{
-                height: 50,
+                height: 40,
                 backgroundColor: 'black',
                 flexDirection: 'row',
                 justifyContent: 'space-between',

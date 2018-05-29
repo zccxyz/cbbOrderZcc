@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { Text, Thumbnail, Icon, Item, Input } from 'native-base';
 import Color from "../common/Color";
-import Left from "../common/Left";
+import MyLeft from "../common/Left";
 import Bottom from "../common/Bottom";
 
 export default class Index extends Component {
@@ -33,7 +33,7 @@ export default class Index extends Component {
     render() {
         return (
             <View style={{flex: 1, justifyContent: 'space-between',flexDirection: 'row'}}>
-                <Left/>
+                <MyLeft/>
 
                 <View style={{width: WIDTH*14/15, height: HEIGHT-20}}>
                     <View style={{flex: 1, backgroundColor: Color.tableIndex.topBg, flexDirection: 'row',
