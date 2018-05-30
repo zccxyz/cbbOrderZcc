@@ -16,10 +16,12 @@ import {StackNavigator} from 'react-navigation';
 
 import tablesIndex from './app/tables/Index';
 import meal from './app/tables/meal';
+import settle from './app/tables/settle';
 import Login from './app/Login';
 import setIndex from './app/set/Index';
 import shiftIndex from './app/shift/Index';
 import GoodsIndex from './app/goods/Index';
+import Clear from './app/goods/Clear';
 import AreaIndex from './app/areaSet/Index';
 import SaveIndex from './app/saveOrder/Index';
 import ReserveIndex from './app/reserve/Index';
@@ -29,8 +31,22 @@ import ShopIndex from './app/shop/Index';
 import OAIndex from './app/OA/Index';
 import SystemIndex from './app/system/Index';
 import LastIndex from './app/last/Index';
+import MemberIndex from './app/member/Index';
+import Left from './app/common/Left';
 
 const Router = StackNavigator({
+    Clear: {
+        screen: Clear,
+        navigationOptions: {
+            header: null,
+        }
+    },
+    MemberIndex: {
+        screen: MemberIndex,
+        navigationOptions: {
+            header: null,
+        }
+    },
     LastIndex: {
         screen: LastIndex,
         navigationOptions: {
@@ -120,9 +136,15 @@ const Router = StackNavigator({
         navigationOptions: {
             header: null,
         }
+    },
+    settle: {
+        screen: settle,
+        navigationOptions: {
+            header: null,
+        }
     }
 }, {
-    initialRouteName: 'ShopIndex',
+    initialRouteName: 'settle',
 });
 
 export default class App extends Component {

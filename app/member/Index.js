@@ -64,24 +64,25 @@ export default class Index extends Component {
 
     _item(item) {
         return(
-            <View style={{width:300, height: 200, elevation: 2, backgroundColor: 'white', margin:5}}>
-                <View style={{height:160, padding:5}}>
-                    <Text style={{padding:5}}>姓名：zcc</Text>
-                    <Text style={{padding:5}}>电话：18584878968</Text>
-                    <Text style={{padding:5}}>卡号：525635</Text>
-                    <Text style={{padding:5}}>门店：十三小厨测试店铺</Text>
-                    <View style={{flexDirection:'row',padding:5}}>
-                        <Text style={{fontSize:13}}>总消费次数：1</Text>
-                        <Text style={{fontSize:13}}>月消费次数：1</Text>
+            <View style={{width:WIDTH/3-100, height: 150, elevation: 2, backgroundColor: 'white', margin:5}}>
+                <View style={{height:120, padding:5}}>
+                    <Text style={{padding:2, fontSize: 13}}>姓名：zcc</Text>
+                    <Text style={{padding:2, fontSize: 13}}>电话：18584878968</Text>
+                    <Text style={{padding:2, fontSize: 13}}>卡号：525635</Text>
+                    <Text style={{padding:2, fontSize: 13}}>门店：十三小厨测试店铺</Text>
+                    <View style={{flexDirection:'row',padding:2}}>
+                        <Text style={{fontSize:12}}>总消费次数：1</Text>
+                        <Text>&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+                        <Text style={{fontSize:12}}>月消费次数：1</Text>
                     </View>
-                    <View style={{width:120, height:100, position:'absolute', top: 0, right:0, padding:10}}>
-                        <Text>余额：<Text style={{color: '#A39104', fontSize: 20}}>960</Text></Text>
-                        <Text>积分：<Text style={{color: '#A39104', fontSize: 20}}>960</Text></Text>
+                    <View style={{width:100, height:100, position:'absolute', top: 0, right:0, padding:10}}>
+                        <Text style={{fontSize: 13}}>余额：<Text style={{color: '#A39104', fontSize: 18}}>960</Text></Text>
+                        <Text style={{fontSize: 13}}>积分：<Text style={{color: '#A39104', fontSize: 18}}>960</Text></Text>
                     </View>
                 </View>
-                <View style={{backgroundColor:'#A39104', flexDirection:'row', justifyContent:'flex-end',height:40}}>
-                    <Text style={{color: 'white', width: 80,textAlign:'center',height: 40, lineHeight:40, backgroundColor:'#019D86'}}>送券</Text>
-                    <Text style={{color: 'white', width: 80,textAlign:'center',height: 40, lineHeight:40}}>充值</Text>
+                <View style={{backgroundColor:'#A39104', flexDirection:'row', justifyContent:'flex-end',height:30}}>
+                    <Text style={{color: 'white', width: 80,textAlign:'center',height: 30, lineHeight:30, backgroundColor:'#019D86'}}>送券</Text>
+                    <Text style={{color: 'white', width: 80,textAlign:'center',height: 30, lineHeight:30}}>充值</Text>
                 </View>
             </View>
         )

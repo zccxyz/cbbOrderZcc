@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
-    View, Switch, FlatList, TouchableOpacity, DeviceEventEmitter,
+    View, Switch, FlatList, TouchableOpacity, DeviceEventEmitter, ImageBackground, Picker
 } from 'react-native';
-import {Text, Thumbnail, Icon, Item, Input} from 'native-base';
+import {Text, Thumbnail, Icon, Item, Input, Button} from 'native-base';
 import Color from "../common/Color";
+import Bottom from "./Bottom";
 
 export default class Left extends Component {
     constructor(props) {
@@ -28,45 +29,55 @@ export default class Left extends Component {
                 {name: '设置', zt: false, id: 14},
             ],
             now: 1,
+            zt: 1,
         };
     }
 
     componentWillMount() {
         this.setState({now: this.props.id})
     }
-
+    _init(){
+        return null;
+    }
     render() {
         return (
-            <View style={{width: WIDTH / 15, backgroundColor: Color.tableIndex.leftBg, elevation: 4}}>
-                <View style={{
-                    width: WIDTH / 15,
-                    height: HEIGHT * 1.5 / 12,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: Color.tableIndex.photoBg
-                }}>
-                    <Thumbnail
-                        source={{uri: "http://f.hiphotos.baidu.com/zhidao/pic/item/d1a20cf431adcbef63081c28abaf2edda3cc9fdb.jpg"}}/>
-                    <Text style={{color: Color.tableIndex.font}}>ZCC</Text>
+            <View style={{flex: 1, justifyContent: 'space-between', flexDirection: 'row'}}>
+                <View style={{width: WIDTH / 15, backgroundColor: Color.tableIndex.leftBg, elevation: 4}}>
+                    <View style={{
+                        width: WIDTH / 15,
+                        height: HEIGHT * 1.5 / 12,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: Color.tableIndex.photoBg}}>
+                        <Thumbnail
+                            source={{uri: "http://f.hiphotos.baidu.com/zhidao/pic/item/d1a20cf431adcbef63081c28abaf2edda3cc9fdb.jpg"}}/>
+                        <Text style={{color: Color.tableIndex.font}}>ZCC</Text>
+                    </View>
+                    <View style={{
+                        width: WIDTH / 15,
+                        height: HEIGHT * 0.5 / 12,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: '#333333'
+                    }}>
+                        <Text style={{color: Color.tableIndex.font, fontSize: 13}}>展开区域{this.state.zt}</Text>
+                        <Icon name={'chevron-small-down'} style={{color: Color.tableIndex.font, fontSize: 13}}
+                              type={'Entypo'}/>
+                    </View>
+                    <FlatList data={this.state.nav} renderItem={({item}) => this._leftItem(item)}
+                              keyExtractor={({v, k}) => k + 'x'} extraData={this.state}/>
                 </View>
-                <View style={{
-                    width: WIDTH / 15,
-                    height: HEIGHT * 0.5 / 12,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: '#333333'
-                }}>
-                    <Text style={{color: Color.tableIndex.font, fontSize: 13}}>展开区域</Text>
-                    <Icon name={'chevron-small-down'} style={{color: Color.tableIndex.font, fontSize: 13}}
-                          type={'Entypo'}/>
+                <View style={{width: WIDTH*14 / 15}}>
+                    <ImageBackground style={{height: HEIGHT - 60}} source={require('../bg/bg2.jpg')}>
+                        {this._init()}
+                    </ImageBackground>
+                    <Bottom/>
                 </View>
-                <FlatList data={this.state.nav} renderItem={({item}) => this._item(item)}
-                          keyExtractor={({v, k}) => k + 'x'}/>
             </View>
         )
     }
 
-    _item(item) {
+    _leftItem(item) {
         return (
             <TouchableOpacity onPress={() => this._tz(item)}>
                 <View style={{width: WIDTH / 15, height: HEIGHT / 12, justifyContent: 'center', alignItems: 'center'}}>
@@ -82,6 +93,9 @@ export default class Left extends Component {
         //const navigate = this.props.navigation;
         switch (item.name) {
             case '餐桌':
+                this.setState({zt: 2}, ()=>{
+                    alert(this.state.zt);
+                });
                 DeviceEventEmitter.emit('reload', {id: item.id, tz: 'tablesIndex'});
                 break;
             case '商品':

@@ -10,8 +10,7 @@ import Color from "../common/Color";
 export default class Bottom extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
+
     }
 
     render() {

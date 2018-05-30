@@ -35,7 +35,7 @@ export default class Login extends Component {
                         </View>
 
                         <Button full rounded style={{backgroundColor: Color.tableIndex.photoBg}}>
-                            <Text>Success</Text>
+                            <Text>登录</Text>
                         </Button>
                     </View>
                 </View>
