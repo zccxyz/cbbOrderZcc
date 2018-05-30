@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
-    View, Switch, FlatList, ImageBackground,
+    View, Switch, FlatList, ImageBackground,Modal
 } from 'react-native';
-import { Text, Thumbnail, Icon, Item, Input } from 'native-base';
+import { Text, Thumbnail, Icon, Item, Input ,Button} from 'native-base';
 import Color from "../common/Color";
 import MyLeft from "../common/Left";
 import Top from "../common/Top";
@@ -59,7 +59,49 @@ export default class Index extends MyLeft {
                     <FlatList data={this.state.tables} columnWrapperStyle={{justifyContent:'center'}}
                               renderItem={({item})=>this._item(item)} numColumns={10} keyExtractor={({v, k})=>k}/>
                 </View>
+
+                <Modal animationType={'fade'} visible={this.state.zt} onRequestClose={()=>this.setState({zt: false})} transparent={true}>
+                    <View style={{flex:1,justifyContent:'center',alignItems:'center',}}>
+                        <View style={{width:WIDTH/3,backgroundColor:'#1a1a1a',borderRadius:8,paddingTop:20,paddingBottom:20}}>
+
+                            <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                                <Text style={{color:'#fff'}}>原桌号：</Text>
+                                <View style={{flexDirection:'row',borderWidth:1,borderColor:'#fff',alignItems:'center',borderRadius:5}}>
+                                    <Text style={{color:'#fff',borderRightWidth:1,borderColor:'#fff',paddingLeft:20,paddingRight:20}}>B03</Text>
+                                    <View style={{marginLeft:5,marginRight:5}}>
+                                        <Icon name='triangle-up' type={'Entypo'} style={{color:'#fff',fontSize:16}}></Icon>
+                                        <Icon name='triangle-down' type={'Entypo'} style={{color:'#fff',fontSize:16}}></Icon>
+                                    </View>
+                                </View>
+                                <View style={{marginLeft:15,marginRight:15,height:1,width:50,backgroundColor:'#fff'}}></View>
+                                <Text style={{color:'#fff'}}>换桌：</Text>
+                                <View style={{flexDirection:'row',borderWidth:1,borderColor:'#fff',alignItems:'center',borderRadius:5}}>
+                                    <Text style={{color:'#fff',borderRightWidth:1,borderColor:'#fff',paddingLeft:20,paddingRight:20}}>B03</Text>
+                                    <View style={{marginLeft:5,marginRight:5}}>
+                                        <Icon name='triangle-up' type={'Entypo'} style={{color:'#fff',fontSize:16}}></Icon>
+                                        <Icon name='triangle-down' type={'Entypo'} style={{color:'#fff',fontSize:16}}></Icon>
+                                    </View>
+                                </View>
+                            </View>
+
+                            <View style={{height:50,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                                <Text style={{color:'#fff'}}>原桌号B03</Text>
+                                <Text style={{paddingLeft:20,paddingRight:20,color:'#fff'}}>已换至</Text>
+                                <Text style={{color:'#fff'}}>B02</Text>
+                            </View>
+
+                            <View style={{justifyContent:'center',alignItems:'center',height:60}}>
+                                <View>
+                                    <Button style={{height:40,width:120,backgroundColor:'#8dc23c',borderRadius:40,justifyContent:'center'}}>
+                                        <Text style={{color:'#fff'}}>确定</Text>
+                                    </Button>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
             </View>
+
         );
     }
 
@@ -71,6 +113,9 @@ export default class Index extends MyLeft {
                 </View>
                 <Text>{item.num}人</Text>
                 <Text>&yen;{item.price}</Text>
+                <ImageBackground style={{width:30,height:30,position:'absolute',right:0,bottom:0}} source={require('../bg/Coder_03.png')}>
+                    {/*<Text style={{color:'#fff',textAlign:'right',paddingRight:2,lineHeight:40,fontSize:15}}>5</Text>*/}
+                </ImageBackground>
             </View>
         )
     }
