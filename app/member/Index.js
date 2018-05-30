@@ -8,11 +8,12 @@ import { Text, Thumbnail, Icon, Item, Input, Button, Card, CardItem, Body } from
 import Color from "../common/Color";
 import MyLeft from "../common/Left";
 import Bottom from "../common/Bottom";
+import Top from "../common/Top";
 
-export default class Index extends Component {
+export default class Index extends MyLeft {
     constructor(props) {
         super(props);
-        this.state = {
+        Object.assign(this.state, {
             tables: [
                 {name: 'A01', num: 5, price: 1125},
                 {name: 'A02', num: 6, price: 1253},
@@ -27,37 +28,35 @@ export default class Index extends Component {
                 {name: 'A06', num: 12, price: 2125},
                 {name: 'A06', num: 12, price: 2125},
             ],
-        };
+            nowNav: 5,
+        });
     }
 
-    render() {
+    _init() {
         return (
-            <View style={{flex: 1, justifyContent: 'space-between',flexDirection: 'row'}}>
-                <MyLeft/>
-
-                <View style={{width: WIDTH*14/15, height: HEIGHT-20}}>
-                    <View style={{flex: 1, backgroundColor: Color.tableIndex.topBg, flexDirection: 'row',
-                        justifyContent: 'space-around', alignItems: 'center', elevation: 2}}>
-                        <View style={{height: 50, width: 320, borderRadius: 5, flexDirection: 'row'}}/>
-                        <Item rounded style={{width: 300}}>
+            <View style={{width: WIDTH*14/15, height: HEIGHT-20}}>
+                <Top com={
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
+                        <View style={{height: GAO, width: 320, borderRadius: 5, flexDirection: 'row'}}/>
+                        <Item rounded style={{width: 300, height: GAO}}>
                             <Input placeholder='输入会员名称或卡号'/>
                             <Icon name={'search'} type={'EvilIcons'} style={{fontSize: 35}}/>
                         </Item>
                         <View>
-                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}}>
+                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}} small>
                                 <Text>开卡</Text>
                             </Button>
                         </View>
                     </View>
+                }/>
 
-                    <View style={{flex: 10}}>
+                <View style={{flex: 10}}>
 
-                        <FlatList data={this.state.tables} columnWrapperStyle={{justifyContent:'center', flexWrap:'wrap'}}
-                                  renderItem={({item})=>this._item(item)} numColumns={3} keyExtractor={({v, k})=>k}/>
-                    </View>
-
-                    <Bottom/>
+                    <FlatList data={this.state.tables} columnWrapperStyle={{justifyContent:'center', flexWrap:'wrap'}}
+                              renderItem={({item})=>this._item(item)} numColumns={3} keyExtractor={({v, k})=>k}/>
                 </View>
+
+                <Bottom/>
             </View>
         );
     }

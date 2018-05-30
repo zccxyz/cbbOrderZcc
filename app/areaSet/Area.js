@@ -34,8 +34,8 @@ export default class Area extends Component {
             </View>
         );
         return(
-            <View style={{flex:10, padding:5}}>
-                <View style={{flex:1, justifyContent:'space-between', alignItems:'center', backgroundColor: 'white', flexDirection: 'row'}}>
+            <View style={{flex:10}}>
+                <View style={{flex:1, justifyContent:'space-between', alignItems:'center', backgroundColor: BgColor, flexDirection: 'row', padding:10}}>
                     <View style={{flexDirection:'row', alignItems:'center'}}>
                         <Button style={{backgroundColor: Color.tableIndex.photoBg}}>
                             <Text>新增区域</Text>
@@ -46,7 +46,7 @@ export default class Area extends Component {
                         <Button transparent ><Icon name={'chevron-right'} type={'Entypo'}/></Button>
                     </View>
                 </View>
-                <View style={{flex:10, backgroundColor: 'white'}}>
+                <View style={{flex:10, backgroundColor: BgColor}}>
                     <Table borderStyle={{borderColor: '#CAD3DF'}}>
                         <Row data={state.tableHead} style={styles.head} textStyle={styles.text}/>
                         {

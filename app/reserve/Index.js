@@ -8,43 +8,33 @@ import { Text, Thumbnail, Icon, Item, Input, Button } from 'native-base';
 import Color from "../common/Color";
 import MyLeft from "../common/Left";
 import Reserve from "./Reserve";
+import Top from "../common/Top";
 
-export default class Index extends Component {
+export default class Index extends MyLeft {
     constructor(props) {
         super(props);
-        this.state = {
+        Object.assign(this.state, {
             type: 1,
-        };
+            nowNav: 7,
+        });
     }
 
-    render() {
+    _init() {
         const state = this.state;
         return(
-            <View style={{flex: 1, justifyContent: 'space-between', flexDirection: 'row'}}>
-                <MyLeft/>
-                <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
-                    <View style={{
-                        flex: 1, backgroundColor: Color.tableIndex.topBg, flexDirection: 'row',
-                        justifyContent: 'space-around', alignItems: 'center', elevation: 2}}>
-                        <View style={{height: 50, width: 80, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
+            <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
+                <Top com={
+                    <View style={{flex: 1,  flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
+                        <View style={{height: GAO, width: 80, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
 
-                            <Text onPress={()=>this.setState({type: 1})} style={{height: 50, width: 80, backgroundColor: state.type===1?Color.tableIndex.photoBg:null,
-                                textAlign:'center', lineHeight: 50, color: state.type===1?Color.tableIndex.font:'black'}}>预定订单</Text>
+                            <Text onPress={()=>this.setState({type: 1})} style={{height: GAO, width: 80, backgroundColor: state.type===1?Color.tableIndex.photoBg:null,
+                                textAlign:'center', lineHeight: GAO, color: state.type===1?Color.tableIndex.font:'black'}}>预定订单</Text>
                         </View>
                     </View>
+                }/>
 
-                    {state.type===1?<Reserve/>:null}
-                </View>
+                {state.type===1?<Reserve/>:null}
             </View>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-    head: { height: 40, backgroundColor: '#ECEFF4' },
-    text: { margin: 6, textAlign:'center' },
-    row: { flexDirection: 'row', backgroundColor: 'white'  },
-    btn: { width: 58, height: 18, backgroundColor: '#78B7BB',  borderRadius: 2 },
-    btnText: { textAlign: 'center', color: '#fff' }
-});

@@ -88,10 +88,10 @@ export default class Info extends Component {
 
     render() {
         return(
-            <View style={{flex:10, padding:5}}>
+            <View style={{flex:10}}>
                 {/*<Button onPress={()=>this.getImg()}><Text>图片上传</Text></Button>*/}
                 {/*<Button onPress={()=>this._showAreaPicker()}><Text>地区选择</Text></Button>*/}
-                <View style={{flex:1, backgroundColor: 'white',flexDirection:'row'}}>
+                <View style={{flex:1, backgroundColor: TableColor,flexDirection:'row', padding:10}}>
                     <ScrollView style={{flex:1}}>
                         <Text style={{lineHeight:100,textAlign:'center'}}>门店基础信息</Text>
                         <View style={{flexDirection:'row',justifyContent:'space-between'}}>

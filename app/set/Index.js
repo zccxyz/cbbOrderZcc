@@ -6,38 +6,35 @@ import {
 } from 'react-native';
 import { Text, Thumbnail, Icon, Item, Input, Button } from 'native-base';
 import Color from "../common/Color";
-import Left from "../common/Left";
-import Bottom from "../common/Bottom";
+import MyLeft from "../common/Left";
 import Bg from "../common/Bg";
+import Top from "../common/Top";
 
-export default class Index extends Component {
+export default class Index extends MyLeft {
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        Object.assign(this.state, {
+            nowNav: 14,
+        });
     }
 
-    render() {
+    _init() {
         return(
-            <View style={{flex: 1, justifyContent: 'space-between', flexDirection: 'row'}}>
-                <Left/>
-                <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
-                    <View style={{
-                        flex: 1, backgroundColor: Color.tableIndex.topBg, flexDirection: 'row',
-                        justifyContent: 'space-around', alignItems: 'center', elevation: 2}}>
+            <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
+                <Top com={
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
                         <View>
-                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}}>
+                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}} small>
                                 <Text>更新缓存</Text>
                             </Button>
                         </View>
                         <View>
-                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}}>
+                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}} small>
                                 <Text>帮助信息</Text>
                             </Button>
                         </View>
                         <View>
-                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}}>
+                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}} small>
                                 <Text>使用反馈</Text>
                             </Button>
                         </View>
@@ -58,10 +55,174 @@ export default class Index extends Component {
                             <Switch/>
                         </View>
                     </View>
+                }/>
 
-                    <Bg name={'Set'}/>
+                <View style={{flex: 1, flexDirection: 'column', backgroundColor: 'rgba(255,255,255,.8)'}}>
+                    <View style={{flexDirection: 'row', height: 50}}>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>打印场景</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>设备名称</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>规格</Text>
+                        </View>
+                        <View style={{flex:2, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>操作</Text>
+                        </View>
+                    </View>
 
-                    <Bottom/>
+                    <View style={{flexDirection: 'row', height: 50}}>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>收银台</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:2, alignItems: 'center', justifyContent: 'space-around', flexDirection: 'row'}}>
+                            <View>
+                                <Button small style={{backgroundColor: Color.tableIndex.photoBg}}>
+                                    <Text>设置</Text>
+                                </Button>
+                            </View>
+                            <Text>一菜一单</Text>
+                            <Switch/>
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row', height: 50}}>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>厨房</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:2, alignItems: 'center', justifyContent: 'space-around', flexDirection: 'row'}}>
+                            <View>
+                                <Button small style={{backgroundColor: Color.tableIndex.photoBg}}>
+                                    <Text>设置</Text>
+                                </Button>
+                            </View>
+                            <Text>一菜一单</Text>
+                            <Switch/>
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row', height: 50}}>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>标签</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>--</Text>
+                        </View>
+                        <View style={{flex:2, alignItems: 'center', justifyContent: 'space-around', flexDirection: 'row'}}>
+                            <View>
+                                <Button small style={{backgroundColor: Color.tableIndex.photoBg}}>
+                                    <Text>设置</Text>
+                                </Button>
+                            </View>
+                            <Text>一菜一单</Text>
+                            <Switch/>
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row', height: 50}}>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>凉菜档口</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:2, alignItems: 'center', justifyContent: 'space-around', flexDirection: 'row'}}>
+                            <View>
+                                <Button small style={{backgroundColor: Color.tableIndex.photoBg}}>
+                                    <Text>设置</Text>
+                                </Button>
+                            </View>
+                            <Text>一菜一单</Text>
+                            <Switch/>
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row', height: 50}}>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>热菜档口</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:2, alignItems: 'center', justifyContent: 'space-around', flexDirection: 'row'}}>
+                            <View>
+                                <Button small style={{backgroundColor: Color.tableIndex.photoBg}}>
+                                    <Text>设置</Text>
+                                </Button>
+                            </View>
+                            <Text>一菜一单</Text>
+                            <Switch/>
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row', height: 50}}>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>收银档口</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:2, alignItems: 'center', justifyContent: 'space-around', flexDirection: 'row'}}>
+                            <View>
+                                <Button small style={{backgroundColor: Color.tableIndex.photoBg}}>
+                                    <Text>设置</Text>
+                                </Button>
+                            </View>
+                            <Text>一菜一单</Text>
+                            <Switch/>
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row', height: 50}}>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>外卖档口</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text>未设置</Text>
+                        </View>
+                        <View style={{flex:2, alignItems: 'center', justifyContent: 'space-around', flexDirection: 'row'}}>
+                            <View>
+                                <Button small style={{backgroundColor: Color.tableIndex.photoBg}}>
+                                    <Text>设置</Text>
+                                </Button>
+                            </View>
+                            <Text>一菜一单</Text>
+                            <Switch/>
+                        </View>
+                    </View>
+
+                    <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: '#D9D9D9', height: 40, position:'absolute', bottom: 40, width: WIDTH}}>
+                        <Text>重庆餐宝宝有限公司</Text>
+                    </View>
                 </View>
             </View>
         )

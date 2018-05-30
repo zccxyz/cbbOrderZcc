@@ -32,9 +32,15 @@ import OAIndex from './app/OA/Index';
 import SystemIndex from './app/system/Index';
 import LastIndex from './app/last/Index';
 import MemberIndex from './app/member/Index';
-import Left from './app/common/Left';
+import OrderIndex from './app/order/Index';
 
 const Router = StackNavigator({
+    OrderIndex: {
+        screen: OrderIndex,
+        navigationOptions: {
+            header: null,
+        }
+    },
     Clear: {
         screen: Clear,
         navigationOptions: {
@@ -144,7 +150,7 @@ const Router = StackNavigator({
         }
     }
 }, {
-    initialRouteName: 'meal',
+    initialRouteName: 'CharitableIndex',
 });
 
 export default class App extends Component {

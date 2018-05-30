@@ -37,8 +37,8 @@ export default class Save extends Component {
             data.map((v, k)=> <Text>{v}</Text>)
         );
         return(
-            <View style={{flex:10, padding:5}}>
-                <View style={{flex:1, justifyContent:'space-between', alignItems:'center', backgroundColor: 'white', flexDirection: 'row'}}>
+            <View style={{flex:10}}>
+                <View style={{flex:1, justifyContent:'space-between', alignItems:'center', backgroundColor: BgColor, flexDirection: 'row', padding:10}}>
                     <View style={{flexDirection:'row', alignItems:'center'}}>
                         {/*<Button style={{backgroundColor: Color.tableIndex.photoBg}}>
                             <Text>新增区域</Text>
@@ -49,13 +49,13 @@ export default class Save extends Component {
                         <Button transparent ><Icon name={'chevron-right'} type={'Entypo'}/></Button>
                     </View>
                 </View>
-                <View style={{flex:10, backgroundColor: 'white'}}>
+                <View style={{flex:10, backgroundColor: BgColor}}>
                     <ScrollView>
                         <Table borderStyle={{borderColor: '#CAD3DF'}}>
-                            <Row data={state.tableHead} style={styles.head} textStyle={styles.text}/>
+                            <Row data={state.tableHead} style={[styles.head, {backgroundColor: TableColor}]} textStyle={styles.text}/>
                             {
                                 state.tableData.map((rowData, index) => (
-                                    <TableWrapper key={index} style={styles.row}>
+                                    <TableWrapper key={index} style={[styles.row, {backgroundColor: TableColor}]}>
                                         {
                                             rowData.map((cellData, cellIndex) => {
                                                 if(cellIndex===3) {
@@ -78,9 +78,9 @@ export default class Save extends Component {
 
 const styles = StyleSheet.create({
     container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-    head: { height: 40, backgroundColor: '#ECEFF4' },
+    head: { height: 40, backgroundColor: '#fff' },
     text: { margin: 6, textAlign:'center' },
-    row: { flexDirection: 'row', backgroundColor: 'white'  },
+    row: { flexDirection: 'row', backgroundColor: '#fff'  },
     btn: { width: 58, height: 18, backgroundColor: '#78B7BB',  borderRadius: 2 },
     btnText: { textAlign: 'center', color: '#fff' }
 });

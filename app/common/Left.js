@@ -28,8 +28,7 @@ export default class Left extends Component {
                 {name: '交班', zt: false, id: 13},
                 {name: '设置', zt: false, id: 14},
             ],
-            now: 1,
-            zt: 1,
+            nowNav: 1,
         };
     }
 
@@ -45,15 +44,15 @@ export default class Left extends Component {
                 <View style={{width: WIDTH / 15, backgroundColor: Color.tableIndex.leftBg, elevation: 4}}>
                     <View style={{
                         width: WIDTH / 15,
-                        height: HEIGHT * 1.5 / 12,
+                        height: 50,
                         justifyContent: 'center',
                         alignItems: 'center',
                         backgroundColor: Color.tableIndex.photoBg}}>
-                        <Thumbnail
+                        <Thumbnail small
                             source={{uri: "http://f.hiphotos.baidu.com/zhidao/pic/item/d1a20cf431adcbef63081c28abaf2edda3cc9fdb.jpg"}}/>
-                        <Text style={{color: Color.tableIndex.font}}>ZCC</Text>
+                        <Text style={{color: Color.tableIndex.font, fontSize: 13}}>ZCC</Text>
                     </View>
-                    <View style={{
+                    {/*<View style={{
                         width: WIDTH / 15,
                         height: HEIGHT * 0.5 / 12,
                         justifyContent: 'center',
@@ -63,7 +62,7 @@ export default class Left extends Component {
                         <Text style={{color: Color.tableIndex.font, fontSize: 13}}>展开区域{this.state.zt}</Text>
                         <Icon name={'chevron-small-down'} style={{color: Color.tableIndex.font, fontSize: 13}}
                               type={'Entypo'}/>
-                    </View>
+                    </View>*/}
                     <FlatList data={this.state.nav} renderItem={({item}) => this._leftItem(item)}
                               keyExtractor={({v, k}) => k + 'x'} extraData={this.state}/>
                 </View>
@@ -80,9 +79,9 @@ export default class Left extends Component {
     _leftItem(item) {
         return (
             <TouchableOpacity onPress={() => this._tz(item)}>
-                <View style={{width: WIDTH / 15, height: HEIGHT / 12, justifyContent: 'center', alignItems: 'center'}}>
-                    <Icon name={'bowl'} type={'Entypo'} style={{color: item.id===this.state.now ? Color.tableIndex.font : 'gray'}}/>
-                    <Text style={{color: item.id===this.state.now ? Color.tableIndex.font : 'gray'}}>{item.name}</Text>
+                <View style={{width: WIDTH / 15, height: (HEIGHT-90)/14, justifyContent: 'center', alignItems: 'center'}}>
+                    <Icon name={'bowl'} type={'Entypo'} style={{color: item.id===this.state.nowNav ? Color.tableIndex.font : 'gray', fontSize: 15}}/>
+                    <Text style={{color: item.id===this.state.now ? Color.tableIndex.font : 'gray', fontSize: 15}}>{item.name}</Text>
                 </View>
                 <Text style={{backgroundColor: 'black', height: 1}}/>
             </TouchableOpacity>
@@ -91,41 +90,53 @@ export default class Left extends Component {
 
     _tz(item) {
         //const navigate = this.props.navigation;
-        switch (item.name) {
-            case '餐桌':
-                this.setState({zt: 2}, ()=>{
-                    alert(this.state.zt);
-                });
-                DeviceEventEmitter.emit('reload', {id: item.id, tz: 'tablesIndex'});
-                break;
-            case '商品':
-                DeviceEventEmitter.emit('reload', {id: item.id, tz: 'Login'});
-                break;
-            case '场地':
-                break;
-            case '订单':
-                break;
-            case '会员':
-                break;
-            case '存单':
-                break;
-            case '预定':
-                break;
-            case '捐赈':
-                break;
-            case '门店':
-                break;
-            case 'OA':
-                break;
-            case '系统':
-                break;
-            case '审核':
-                break;
-            case '交班':
-                break;
-            case '设置':
-                break;
+        if(this.state.nowNav !== item.id) {
+            switch (item.name) {
+                case '餐桌':
+                    this.props.navigation.navigate('tablesIndex');
+                    //DeviceEventEmitter.emit('reload', {id: item.id, tz: 'tablesIndex'});
+                    break;
+                case '商品':
+                    this.props.navigation.navigate('GoodsIndex');
+                    break;
+                case '场地':
+                    this.props.navigation.navigate('AreaIndex');
+                    break;
+                case '订单':
+                    this.props.navigation.navigate('OrderIndex');
+                    break;
+                case '会员':
+                    this.props.navigation.navigate('MemberIndex');
+                    break;
+                case '存单':
+                    this.props.navigation.navigate('SaveIndex');
+                    break;
+                case '预定':
+                    this.props.navigation.navigate('ReserveIndex');
+                    break;
+                case '捐赈':
+                    this.props.navigation.navigate('CharitableIndex');
+                    break;
+                case '门店':
+                    this.props.navigation.navigate('ShopIndex');
+                    break;
+                case 'OA':
+                    this.props.navigation.navigate('OAIndex');
+                    break;
+                case '系统':
+                    this.props.navigation.navigate('SystemIndex');
+                    break;
+                case '审核':
+                    this.props.navigation.navigate('LastIndex');
+                    break;
+                case '交班':
+                    this.props.navigation.navigate('shiftIndex');
+                    break;
+                case '设置':
+                    this.props.navigation.navigate('setIndex');
+                    break;
+            }
+            //this.setState({nowNav: item.id});
         }
-
     }
 }

@@ -14,6 +14,8 @@ GLOBAL.options = {
     }
 };
 GLOBAL.GAO = 40;
+GLOBAL.BgColor = 'rgba(255,255,255,.5)';
+GLOBAL.TableColor = 'rgba(255,255,255,.8)';
 GLOBAL.area = [
     {
         "name": "北京",
