@@ -13,6 +13,7 @@ GLOBAL.options = {
         path: 'images'
     }
 };
+GLOBAL.GAO = 40;
 GLOBAL.area = [
     {
         "name": "北京",

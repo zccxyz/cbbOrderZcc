@@ -20,7 +20,7 @@ export default class Top extends Component {
     render() {
         return(
             <View style={{
-                height: 60, backgroundColor: Color.tableIndex.topBg, elevation: 2}}>
+                height: 50, backgroundColor: Color.tableIndex.topBg, elevation: 2}}>
                 {this.props.com}
             </View>
         )

@@ -144,7 +144,7 @@ const Router = StackNavigator({
         }
     }
 }, {
-    initialRouteName: 'settle',
+    initialRouteName: 'meal',
 });
 
 export default class App extends Component {

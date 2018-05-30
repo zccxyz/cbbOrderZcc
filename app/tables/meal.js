@@ -44,9 +44,9 @@ export default class Index extends Left {
         return (
             <View style={{width: WIDTH * 14 / 15, flex: 1}}>
                 <Top com={
-                    <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flex:1}}>
                         <View>
-                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}}>
+                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}} small>
                                 <Icon name='ios-arrow-dropleft' type={'Ionicons'} />
                                 <Text>桌台B02</Text>
                             </Button>
@@ -60,11 +60,11 @@ export default class Index extends Left {
                         <View style={{flexDirection: 'row',alignItems: 'center'}}>
                             <Text style={{fontSize:14}}>就餐人数：</Text>
                             <Item style={{width:50}}>
-                                <Input style={{fontSize:14}} placeholder='人数'/>
+                                <Input style={{fontSize:14, height:GAO}} placeholder='人数'/>
                             </Item>
                             <Text style={{fontSize:14}}>人</Text>
                         </View>
-                        <Item rounded style={{width: 200, height:40}}>
+                        <Item rounded style={{width: 200, height:GAO}}>
                             <Icon name={'search'} type={'EvilIcons'}/>
                             <Input placeholder='菜品首字母'/>
                         </Item>
@@ -73,13 +73,13 @@ export default class Index extends Left {
                             <Text style={{fontSize:14}}>(赠送&yen;42)</Text>
                         </View>
                         <View>
-                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}}>
+                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}} small>
                                 <Icon name='ios-arrow-dropleft' type={'Ionicons'} />
                                 <Text>下单</Text>
                             </Button>
                         </View>
                         <View>
-                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}}>
+                            <Button iconLeft style={{backgroundColor: Color.tableIndex.photoBg}} small>
                                 <Icon name='ios-arrow-dropleft' type={'Ionicons'} />
                                 <Text>结账</Text>
                             </Button>
