@@ -5,7 +5,7 @@ import {
     View, Switch, FlatList, ImageBackground, ScrollView,
     TextInput,FixedTextInput
 } from 'react-native';
-import { Text, Thumbnail, Icon, Item, Input, Button } from 'native-base';
+import { Text, Thumbnail, Icon, Item, Input, Button ,Textarea} from 'native-base';
 import Color from "../common/Color";
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 import ImagePicker from "react-native-image-picker";
@@ -160,7 +160,7 @@ export default class Info extends Component {
                         </View>
                     </ScrollView>
                     <View style={{width:400,borderLeftWidth:1,borderColor:'#cad3df'}}>
-                       <TextInput style={styles.intro} underlineColorAndroid='transparent' />
+                        <Textarea style={styles.intro} bordered placeholder="请输入门店介绍" />
                         <View style={{height:80,justifyContent:'center',alignItems:'center'}}>
                             <View>
                                 <Button style={{flexDirection:'row',backgroundColor:'#16b8be',width:120,justifyContent:'center'}}><Text>保存信息</Text></Button>
@@ -181,5 +181,5 @@ const styles = StyleSheet.create({
     btn: { width: 58, height: 18, backgroundColor: '#78B7BB',  borderRadius: 2 },
     btnText: { textAlign: 'center', color: '#fff' },
     textInput:{flex:1,marginRight:50},
-    intro:{ width:350,height:400,marginTop:20,marginLeft:25,borderWidth:1,borderColor:'#dedede',textAlignVertical: 'top'}
+    intro:{ width:350,height:350,marginTop:20,marginLeft:25,borderRadius:5}
 });
