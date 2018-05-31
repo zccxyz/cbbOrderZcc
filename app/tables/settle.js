@@ -54,7 +54,7 @@ export default class Settle extends MyLeft {
                     </View>
                 }/>
                 <View style={styles.contain}>
-                    <ScrollView style={{flex:1, height: HEIGHT - 150, backgroundColor: '#ffffff', marginLeft: 8, marginTop: 8, borderWidth: 1, borderColor: '#d9d9d9',marginRight:8}}>
+                    <ScrollView style={{flex:1,backgroundColor: '#ffffff', marginLeft: 8, marginTop: 8, borderWidth: 1,marginBottom:8, borderColor: '#d9d9d9',marginRight:8}}>
 
                         <View style={{height: 56, flexDirection: 'row', alignItems: 'center', marginTop: 16}}>
                             <Text style={{fontWeight: '500', paddingLeft: 47}}>应收金额：</Text>
@@ -182,7 +182,7 @@ export default class Settle extends MyLeft {
 
                     </ScrollView>
 
-                    <View style={{width:WIDTH / 7 *2, height: HEIGHT - 142, backgroundColor: '#ffffff'}}>
+                    <View style={{width:WIDTH / 7 *2,marginBottom:8, backgroundColor: '#ffffff'}}>
                         <View style={{flexDirection:'row',backgroundColor:'#e6e6e6'}}>
                             <View style={{flex:1,height:50,marginBottom:2,borderTopWidth:3,backgroundColor:'#ffffff',borderTopColor:'#b1b0b0',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
                                 <Text>菜品列表</Text>

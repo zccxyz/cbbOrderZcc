@@ -27,6 +27,7 @@ export default class Index extends MyLeft {
                 {name: 'A06', num: 12, price: 2125},
                 {name: 'A06', num: 12, price: 2125},
             ],
+            zt:false
         });
     }
 
@@ -44,7 +45,7 @@ export default class Index extends MyLeft {
                         </View>
                         <View style={{height: GAO, width: 160, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
                             <Text style={{height: GAO, width: 80, backgroundColor: Color.tableIndex.photoBg,
-                                textAlign:'center', lineHeight: GAO, color: Color.tableIndex.font}}>桌号↑</Text>
+                                textAlign:'center', lineHeight: GAO, color: Color.tableIndex.font}} onPress={()=>{this.setState({zt:true})}}>桌号↑</Text>
                             <Text style={{height: GAO, width: 80, textAlign:'center', lineHeight: GAO, borderRightWidth: 1, borderColor: Color.tableIndex.photoBg}}>时间↓</Text>
                         </View>
                         <Switch/>
@@ -61,10 +62,10 @@ export default class Index extends MyLeft {
                 </View>
 
                 <Modal animationType={'fade'} visible={this.state.zt} onRequestClose={()=>this.setState({zt: false})} transparent={true}>
-                    <View style={{flex:1,justifyContent:'center',alignItems:'center',}}>
-                        <View style={{width:WIDTH/3,backgroundColor:'#1a1a1a',borderRadius:8,paddingTop:20,paddingBottom:20}}>
+                    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                        <View style={{backgroundColor:'#1a1a1a',borderRadius:8,paddingTop:20,paddingBottom:20}}>
 
-                            <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                            <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',paddingLeft:20,paddingRight:20}}>
                                 <Text style={{color:'#fff'}}>原桌号：</Text>
                                 <View style={{flexDirection:'row',borderWidth:1,borderColor:'#fff',alignItems:'center',borderRadius:5}}>
                                     <Text style={{color:'#fff',borderRightWidth:1,borderColor:'#fff',paddingLeft:20,paddingRight:20}}>B03</Text>
