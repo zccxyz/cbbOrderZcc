@@ -11,16 +11,18 @@ import GoodsManage from "./GoodsManage";
 import StockManage from "./StockManage";
 import Classify from "./Classify";
 import Purchase from "./Purchase";
+import Top from "../common/Top";
 
-export default class Bg extends Component {
+export default class Bg extends MyLeft {
     constructor(props) {
         super(props);
-        this.state = {
+        Object.assign(this.state, {
             type: 4,
-        };
+            nowNav: 2,
+        });
     }
 
-    render() {
+    _init() {
         const state = this.state;
         const element = (data, index) => (
             <View style={{justifyContent:'center', alignItems:'center', flexDirection: 'row'}}>
@@ -35,31 +37,30 @@ export default class Bg extends Component {
             </View>
         );
         return(
-            <View style={{flex: 1, justifyContent: 'space-between', flexDirection: 'row'}}>
-                <MyLeft/>
-                <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
-                    <View style={{
-                        flex: 1, backgroundColor: Color.tableIndex.topBg, flexDirection: 'row',
-                        justifyContent: 'space-around', alignItems: 'center', elevation: 2}}>
-                        <View style={{height: 50, width: 320, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
+            <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
+                <Top com={
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
+                        <View style={{height: GAO, width: 320, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
 
-                            <Text onPress={()=>this.setState({type: 1})} style={{height: 50, width: 80, backgroundColor: state.type===1?Color.tableIndex.photoBg:null,
-                                textAlign:'center', lineHeight: 50, color: state.type===1?Color.tableIndex.font:'black'}}>商品管理</Text>
-                            <Text style={{height: 50, width: 80, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===2?Color.tableIndex.font:'black',
+                            <Text onPress={()=>this.setState({type: 1})} style={{height: GAO, width: 80, backgroundColor: state.type===1?Color.tableIndex.photoBg:null,
+                                textAlign:'center', lineHeight: GAO, color: state.type===1?Color.tableIndex.font:'black'}}>商品管理</Text>
+                            <Text style={{height: GAO, width: 80, textAlign:'center', lineHeight: GAO, borderRightWidth: 1,color:state.type===2?Color.tableIndex.font:'black',
                                 borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===2?Color.tableIndex.photoBg:null}}
-                            onPress={()=>this.setState({type: 2})}>库存管理</Text>
-                            <Text onPress={()=>this.setState({type: 3})} style={{height: 50, width: 80, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===3?Color.tableIndex.font:'black',
+                                  onPress={()=>this.setState({type: 2})}>库存管理</Text>
+                            <Text onPress={()=>this.setState({type: 3})} style={{height: GAO, width: 80, textAlign:'center',
+                                lineHeight: GAO, borderRightWidth: 1,color:state.type===3?Color.tableIndex.font:'black',
                                 borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===3?Color.tableIndex.photoBg:null}}>商品类别</Text>
-                            <Text onPress={()=>this.setState({type: 4})} style={{height: 50, width: 80, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===4?Color.tableIndex.font:'black',
+                            <Text onPress={()=>this.setState({type: 4})} style={{height: GAO, width: 80, textAlign:'center',
+                                lineHeight: GAO, borderRightWidth: 1,color:state.type===4?Color.tableIndex.font:'black',
                                 borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===4?Color.tableIndex.photoBg:null}}>商品采购</Text>
                         </View>
                     </View>
+                }/>
 
-                    {state.type===1?<GoodsManage/>:null}
-                    {state.type===2?<StockManage/>:null}
-                    {state.type===3?<Classify/>:null}
-                    {state.type===4?<Purchase/>:null}
-                </View>
+                {state.type===1?<GoodsManage/>:null}
+                {state.type===2?<StockManage/>:null}
+                {state.type===3?<Classify/>:null}
+                {state.type===4?<Purchase/>:null}
             </View>
         )
     }

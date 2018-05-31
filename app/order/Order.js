@@ -23,7 +23,7 @@ export default class Order extends Component {
 
         };
     }
-    onValueChange(value:string) {
+    onValueChange(value) {
         this.setState({
             selected: value
         });
@@ -98,18 +98,13 @@ export default class Order extends Component {
         MyPicker.show();
     }
 
-
     render() {
         const state = this.state;
         return (
             <View style={{flex: 1, justifyContent: 'space-between',flexDirection: 'row'}}>
-                <MyLeft/>
 
                 <View style={{width: WIDTH*14/15, height: HEIGHT-20}}>
-                    <View style={{height:60,backgroundColor:Color.tableIndex.topBg,justifyContent:'center',alignItems:'center'}}>
-                        {/*<View style={{*/}
-                            {/*flex: 1, backgroundColor: Color.tableIndex.topBg, flexDirection: 'row',*/}
-                            {/*justifyContent: 'space-around', alignItems: 'center', elevation: 2}}>*/}
+                    {/*<View style={{height:60,backgroundColor:Color.tableIndex.topBg,justifyContent:'center',alignItems:'center'}}>
                             <View style={{height: 50, width: 750, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
 
                                 <Text onPress={()=>this.setState({type: 1})} style={{height: 50, width: 150, backgroundColor: state.type===1?Color.tableIndex.photoBg:null,
@@ -126,9 +121,8 @@ export default class Order extends Component {
                                 <Text style={{height: 50, width: 150, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===5?Color.tableIndex.font:'black',
                                     borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===5?Color.tableIndex.photoBg:null, fontSize: 15}}
                                       onPress={()=>this.setState({type: 5})}>门店报损订单</Text>
-                            {/*</View>*/}
                         </View>
-                    </View>
+                    </View>*/}
                     <View style={{height:120, backgroundColor: Color.tableIndex.topBg, flexDirection: 'row', justifyContent:'space-around',flexWrap:'wrap', alignItems: 'center', elevation: 2}}>
                         <View style={{flexDirection:'row',alignItems:'center',height:60}}>
                             <Text style={{fontSize:14}}>桌号：</Text>
@@ -253,7 +247,7 @@ export default class Order extends Component {
                         </View>
                     </View>
 
-                    <View style={{flex: 10,flexDirection:'column'}}>
+                    <View style={{flex: 10,flexDirection:'column', backgroundColor: TableColor}}>
                         <View style={{height:40}}>
                             <FlatList data={this.state.tableHead} columnWrapperStyle={{height:40}}
                                   renderItem={({item})=>this._item(item)} numColumns={10} keyExtractor={({v, k})=>k}/>

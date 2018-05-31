@@ -13,7 +13,7 @@ export default class Purchase extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            zt: true,
+            zt: false,
             tableData: [
                 {
                     name: '法国进口AOC级红酒，尚娜德西拉干葡萄酒',
@@ -94,7 +94,7 @@ export default class Purchase extends Component {
                                 <Text style={{color:'#999',textAlign:'center',lineHeight:22,fontSize:14}}>-</Text>
                             </View>
                         </View>
-                        <Button style={{height:36}} bordered light><Text style={{color:'#999'}}>选择商品</Text></Button>
+                        <Button style={{height:36}} bordered light><Text style={{color:'#999'}} onPress={()=>this.setState({zt: true})}>选择商品</Text></Button>
                     </View>
                 </View>
                 <View style={{height:50,flexDirection:'row',marginLeft:100,alignItems:'center'}}>
@@ -139,9 +139,10 @@ export default class Purchase extends Component {
                         <View style={{flex:1}}>
                             <View style={{height:100,flexDirection:'row',justifyContent:'space-between'}}>
                                 <Text></Text>
-                                <Button style={{backgroundColor:'#fff',marginRight:10,marginTop:10,borderColor:'#999',borderRadius:5}} bordered><Text style={{color:'#666'}}>关闭</Text></Button>
+                                <Button style={{backgroundColor:'#fff',marginRight:10,marginTop:10,borderColor:'#999'
+                                    ,borderRadius:5}} bordered><Text style={{color:'#666'}} onPress={()=>this.setState({zt: false})}>关闭</Text></Button>
                             </View>
-                            <View style={{flex:1,marginLeft:20,marginRight:20}}>
+                            <View style={{flex:1, marginLeft:20, marginRight:20}}>
                                 <Table borderStyle={{borderColor: '#CAD3DF'}}>
                                     {
                                         state.tableData.map((rowData, index) => (

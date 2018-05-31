@@ -10,20 +10,20 @@ import Color from "../common/Color";
 import MyLeft from "../common/Left";
 import Bottom from "../common/Bottom";
 
-export default class NonlocalOder extends Component {
+export default class LossOrder extends Component {
     constructor(props) {
         super(props);
         this.state = {
             tables: [
-                {date: '2018-04-13',num:52, price:53322.34,reason:'破损',reportStaff:'王小二',state:'待审核',manage:{seek:'查看',verify:"审核"}},
+                {order: '071',table:'5', ordertype:'全部',price:'58',person:6,pay:'微信',Card:'122456',payState:'已支付',shopTime:'2018-5-29 14:20:30',staff:'周长城',orderState:'已支付'},
             ],
-            tableHead:["日期","数量","金额","报损原因","报损人","状态","管理"],
+            tableHead:["结账编号","桌号/牌号","订单类型","消费金额","就餐人数","付款方式","会员卡号","支付状态","消费时间","收银人员","订单状态"],
             selected: "key1",
             type:1
 
         };
     }
-    onValueChange(value:string) {
+    onValueChange(value) {
         this.setState({
             selected: value
         });
@@ -98,37 +98,31 @@ export default class NonlocalOder extends Component {
         MyPicker.show();
     }
 
-
     render() {
         const state = this.state;
         return (
             <View style={{flex: 1, justifyContent: 'space-between',flexDirection: 'row'}}>
-                <MyLeft/>
 
                 <View style={{width: WIDTH*14/15, height: HEIGHT-20}}>
-                    <View style={{height:60,backgroundColor:Color.tableIndex.topBg,justifyContent:'center',alignItems:'center'}}>
-                        {/*<View style={{*/}
-                        {/*flex: 1, backgroundColor: Color.tableIndex.topBg, flexDirection: 'row',*/}
-                        {/*justifyContent: 'space-around', alignItems: 'center', elevation: 2}}>*/}
-                        <View style={{height: 50, width: 750, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
+                    {/*<View style={{height:60,backgroundColor:Color.tableIndex.topBg,justifyContent:'center',alignItems:'center'}}>
+                            <View style={{height: 50, width: 750, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
 
-                            <Text onPress={()=>this.setState({type: 1})} style={{height: 50, width: 150, backgroundColor: state.type===1?Color.tableIndex.photoBg:null,
-                                textAlign:'center', lineHeight: 50,borderRightWidth: 1,borderRightColor:Color.tableIndex.photoBg, color: state.type===1?Color.tableIndex.font:'black', fontSize: 15}}>开始下单</Text>
-                            <Text style={{height: 50, width: 150, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===2?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===2?Color.tableIndex.photoBg:null, fontSize: 15}}
-                                  onPress={()=>this.setState({type: 2})}>门店采购单</Text>
-                            <Text style={{height: 50, width: 150, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===3?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===3?Color.tableIndex.photoBg:null, fontSize: 15}}
-                                  onPress={()=>this.setState({type: 3})}>异地消费订单</Text>
-                            <Text style={{height: 50, width: 150, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===4?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===4?Color.tableIndex.photoBg:null, fontSize: 15}}
-                                  onPress={()=>this.setState({type: 4})}>门店消费订单</Text>
-                            <Text style={{height: 50, width: 150, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===5?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===5?Color.tableIndex.photoBg:null, fontSize: 15}}
-                                  onPress={()=>this.setState({type: 5})}>门店报损订单</Text>
-                            {/*</View>*/}
+                                <Text onPress={()=>this.setState({type: 1})} style={{height: 50, width: 150, backgroundColor: state.type===1?Color.tableIndex.photoBg:null,
+                                    textAlign:'center', lineHeight: 50,borderRightWidth: 1,borderRightColor:Color.tableIndex.photoBg, color: state.type===1?Color.tableIndex.font:'black', fontSize: 15}}>开始下单</Text>
+                                <Text style={{height: 50, width: 150, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===2?Color.tableIndex.font:'black',
+                                    borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===2?Color.tableIndex.photoBg:null, fontSize: 15}}
+                                      onPress={()=>this.setState({type: 2})}>门店采购单</Text>
+                                <Text style={{height: 50, width: 150, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===3?Color.tableIndex.font:'black',
+                                    borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===3?Color.tableIndex.photoBg:null, fontSize: 15}}
+                                      onPress={()=>this.setState({type: 3})}>异地消费订单</Text>
+                                <Text style={{height: 50, width: 150, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===4?Color.tableIndex.font:'black',
+                                    borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===4?Color.tableIndex.photoBg:null, fontSize: 15}}
+                                      onPress={()=>this.setState({type: 4})}>门店消费订单</Text>
+                                <Text style={{height: 50, width: 150, textAlign:'center', lineHeight: 50, borderRightWidth: 1,color:state.type===5?Color.tableIndex.font:'black',
+                                    borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===5?Color.tableIndex.photoBg:null, fontSize: 15}}
+                                      onPress={()=>this.setState({type: 5})}>门店报损订单</Text>
                         </View>
-                    </View>
+                    </View>*/}
                     <View style={{height:120, backgroundColor: Color.tableIndex.topBg, flexDirection: 'row', justifyContent:'space-around',flexWrap:'wrap', alignItems: 'center', elevation: 2}}>
                         <View style={{flexDirection:'row',alignItems:'center',height:60}}>
                             <Text style={{fontSize:14}}>桌号：</Text>
@@ -253,7 +247,7 @@ export default class NonlocalOder extends Component {
                         </View>
                     </View>
 
-                    <View style={{flex: 10,flexDirection:'column'}}>
+                    <View style={{flex: 10,flexDirection:'column', backgroundColor: TableColor}}>
                         <View style={{height:40}}>
                             <FlatList data={this.state.tableHead} columnWrapperStyle={{height:40}}
                                       renderItem={({item})=>this._item(item)} numColumns={10} keyExtractor={({v, k})=>k}/>
@@ -280,18 +274,16 @@ export default class NonlocalOder extends Component {
     _item1(item) {
         return(
             <View style={{flex:1,height:40,flexDirection:'row'}}>
-                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,color:'#666'}}>{item.date}</Text></View>
-                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,color:'#666'}}>{item.num}</Text></View>
-                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,color:'#666'}}>{item.price}</Text></View>
-                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,color:'#666'}}>{item.reason}</Text></View>
-                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,color:'#666'}}>{item.reportStaff}</Text></View>
-                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,color:'#666'}}>{item.state}</Text></View>
-                <View style={{flex:1,flexDirection:'row',justifyContent:'center'}}>
-                    <Text style={{textAlign:'center',lineHeight:40,color:'#4baed0'}}>{item.manage.seek}</Text>
-                    <Text style={{lineHeight:40,marginLeft:5,marginRight:5,color:'#666'}}> | </Text>
-                    <Text style={{textAlign:'center',lineHeight:40,color:'red'}}>{item.manage.verify}</Text>
-                </View>
-
+                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,fontSize:14,color:'#666'}}>{item.order}</Text></View>
+                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,fontSize:14,color:'#666'}}>{item.table}</Text></View>
+                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,fontSize:14,color:'#666'}}>{item.ordertype}</Text></View>
+                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,fontSize:14,color:'#666'}}>{item.price}</Text></View>
+                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,fontSize:14,color:'#666'}}>{item.person}</Text></View>
+                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,fontSize:14,color:'#666'}}>{item.pay}</Text></View>
+                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,fontSize:14,color:'#666'}}>{item.Card}</Text></View>
+                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,fontSize:14,color:'#666'}}>{item.payState}</Text></View>
+                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,fontSize:14,color:'#666'}}>{item.shopTime}</Text></View>
+                <View style={{flex:1}}><Text style={{textAlign:'center',lineHeight:40,fontSize:14,color:'#666'}}>{item.staff}</Text></View>
             </View>
         )
     }

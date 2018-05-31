@@ -150,7 +150,7 @@ const Router = StackNavigator({
         }
     }
 }, {
-    initialRouteName: 'CharitableIndex',
+    initialRouteName: 'settle',
 });
 
 export default class App extends Component {
