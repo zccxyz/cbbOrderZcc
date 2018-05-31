@@ -50,19 +50,11 @@ export default class Settle extends Component {
                     </View>
                 </View>
                 <View style={styles.contain}>
-                    <View style={{
-                        width: WIDTH - 372 - 18,
-                        height: HEIGHT - 142 - 18,
-                        backgroundColor: '#ffffff',
-                        marginLeft: 8,
-                        marginTop: 8,
-                        borderWidth: 1,
-                        borderColor: '#d9d9d9'
-                    }}>
+                    <ScrollView style={{flex:1, height: HEIGHT - 150, backgroundColor: '#ffffff', marginLeft: 8, marginTop: 8, borderWidth: 1, borderColor: '#d9d9d9',marginRight:8}}>
 
                         <View style={{height: 56, flexDirection: 'row', alignItems: 'center', marginTop: 16}}>
                             <Text style={{fontWeight: '500', paddingLeft: 47}}>应收金额：</Text>
-                            <Text style={{color: 'red', fontSize: 24}}> 266.00 </Text>
+                            <Text style={{color: 'red', fontSize: 26}}> 266.00 </Text>
                             <Text style={{color: '#888888'}}> (总计 286.00 - 优惠20.00 - 已支付 0.00) </Text>
                         </View>
 
@@ -82,12 +74,9 @@ export default class Settle extends Component {
                                 <Item regular style={{width: 265, height: 42, borderRadius: 5}}>
                                     <Input style={{fontSize: 14}} placeholder='请输入手机号或会员卡号'/>
                                 </Item>
-                                <Button style={{
-                                    height: 40,
-                                    marginTop: 8,
-                                    marginLeft: 19,
-                                    backgroundColor: '#8dc23c'
-                                }}><Text>去开卡</Text></Button>
+                                <Button style={{height: 40, marginTop: 8, marginLeft: 19, backgroundColor: '#8dc23c'}}>
+                                    <Text>去开卡</Text>
+                                </Button>
                             </View>
                         </View>
 
@@ -170,26 +159,26 @@ export default class Settle extends Component {
                         </View>
 
                         <View style={{flexDirection:'row'}}>
-                            <Text style={{fontWeight:'500',paddingLeft:47,marginRight:32,lineHeight:56}}>付款方式：</Text>
-                            <View style={{flexDirection:'row',flexWrap:'wrap'}}>
-                                <Button style={{backgroundColor:'#8dc23c',marginRight:30,marginTop:15}}><Text>微信支付</Text></Button>
-                                <Button style={{backgroundColor:'#ffffff',marginRight:30,marginTop:15}}><Text style={{color:'#333'}}>支付宝</Text></Button>
-                                <Button style={{backgroundColor:'#ffffff',marginRight:30,marginTop:15}}><Text style={{color:'#333'}}>现金</Text></Button>
-                                <Button style={{backgroundColor:'#ffffff',marginRight:30,marginTop:15}}><Text style={{color:'#333'}}>银行卡</Text></Button>
-                                <Button style={{backgroundColor:'#ffffff',marginRight:30,marginTop:15}}><Text style={{color:'#333'}}>抵用券</Text></Button>
-                                <Button style={{backgroundColor:'#ffffff',marginRight:30,marginTop:15}}><Text style={{color:'#333'}}>线下优惠券</Text></Button>
-                                <Button style={{backgroundColor:'#ffffff',marginRight:30,marginTop:15}}><Text style={{color:'#333'}}>挂账</Text></Button>
-                                <Button style={{backgroundColor:'#ffffff',marginRight:30,marginTop:15}}><Text style={{color:'#333'}}>美团外卖</Text></Button>
-                                <Button style={{backgroundColor:'#ffffff',marginRight:30,marginTop:15}}><Text style={{color:'#333'}}>饿了么外卖</Text></Button>
-                                <Button style={{backgroundColor:'#ffffff',marginRight:30,marginTop:15}}><Text style={{color:'#333'}}>百度外卖</Text></Button>
-                                <Button style={{backgroundColor:'#ffffff',marginRight:30,marginTop:15}}><Text style={{color:'#333'}}>支付宝口碑</Text></Button>
-                                <Button style={{backgroundColor:'#ffffff',marginRight:30,marginTop:15}}><Text style={{color:'#333'}}>信用社融合付</Text></Button>
+                            <Text style={{fontWeight:'500',marginLeft:47,marginRight:32,lineHeight:56}}>付款方式：</Text>
+                            <View style={{flex:1,flexDirection:'row',flexWrap:'wrap'}}>
+                                <Button style={{height:40,backgroundColor:'#8dc23c',marginRight:20,marginTop:15}}><Text>微信支付</Text></Button>
+                                <Button style={{height:40,backgroundColor:'#ffffff',marginRight:20,marginTop:15}}><Text style={{color:'#333'}}>支付宝</Text></Button>
+                                <Button style={{height:40,backgroundColor:'#ffffff',marginRight:20,marginTop:15}}><Text style={{color:'#333'}}>现金</Text></Button>
+                                <Button style={{height:40,backgroundColor:'#ffffff',marginRight:20,marginTop:15}}><Text style={{color:'#333'}}>银行卡</Text></Button>
+                                <Button style={{height:40,backgroundColor:'#ffffff',marginRight:20,marginTop:15}}><Text style={{color:'#333'}}>抵用券</Text></Button>
+                                <Button style={{height:40,backgroundColor:'#ffffff',marginRight:20,marginTop:15}}><Text style={{color:'#333'}}>线下优惠券</Text></Button>
+                                <Button style={{height:40,backgroundColor:'#ffffff',marginRight:20,marginTop:15}}><Text style={{color:'#333'}}>挂账</Text></Button>
+                                <Button style={{height:40,backgroundColor:'#ffffff',marginRight:20,marginTop:15}}><Text style={{color:'#333'}}>美团外卖</Text></Button>
+                                <Button style={{height:40,backgroundColor:'#ffffff',marginRight:20,marginTop:15}}><Text style={{color:'#333'}}>饿了么外卖</Text></Button>
+                                <Button style={{height:40,backgroundColor:'#ffffff',marginRight:20,marginTop:15}}><Text style={{color:'#333'}}>百度外卖</Text></Button>
+                                <Button style={{height:40,backgroundColor:'#ffffff',marginRight:20,marginTop:15}}><Text style={{color:'#333'}}>支付宝口碑</Text></Button>
+                                <Button style={{height:40,backgroundColor:'#ffffff',marginRight:20,marginTop:15}}><Text style={{color:'#333'}}>信用社融合付</Text></Button>
                             </View>
                         </View>
 
-                    </View>
+                    </ScrollView>
 
-                    <View style={{width: 372, height: HEIGHT - 142, backgroundColor: '#ffffff'}}>
+                    <View style={{width:WIDTH / 7 *2, height: HEIGHT - 142, backgroundColor: '#ffffff'}}>
                         <View style={{flexDirection:'row',backgroundColor:'#e6e6e6'}}>
                             <View style={{flex:1,height:50,marginBottom:2,borderTopWidth:3,backgroundColor:'#ffffff',borderTopColor:'#b1b0b0',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
                                 <Text>菜品列表</Text>
@@ -203,26 +192,26 @@ export default class Settle extends Component {
                         </View>
                         <ScrollView style={{flex:1,display:'none'}}>
                             <View style={{height:54,flexDirection:'row',alignItems:'center',borderBottomWidth:1,borderBottomColor:'#e6e6e6'}}>
-                                <View style={{flex:2}}><Text style={{paddingLeft:20,color:'#333333'}} numberOfLines={1}>小红妹悠乐果杯过呗过不</Text></View>
-                                <Text style={{flex:1,textAlign:'center',color:'#888888'}}> x 1</Text>
-                                <Text style={{flex:1,textAlign:'center',color:'#888888'}}>￥18</Text>
+                                <View style={{flex:2}}><Text style={{paddingLeft:20,color:'#333333',fontSize:14}} numberOfLines={1}>小红妹悠乐果杯过呗过不</Text></View>
+                                <Text style={{flex:1,textAlign:'center',color:'#888888',fontSize:14}}> x 1</Text>
+                                <Text style={{flex:1,textAlign:'center',color:'#888888',fontSize:14}}>￥18</Text>
                             </View>
                             <View style={{height:54,flexDirection:'row',alignItems:'center',borderBottomWidth:1,borderBottomColor:'#e6e6e6'}}>
-                                <View style={{flex:2}}><Text style={{paddingLeft:20,color:'#333333'}} numberOfLines={1}>小红妹悠乐果杯过呗过不</Text></View>
-                                <Text style={{flex:1,textAlign:'center',color:'#888888'}}> x 1</Text>
-                                <Text style={{flex:1,textAlign:'center',color:'#888888'}}>￥18</Text>
+                                <View style={{flex:2}}><Text style={{paddingLeft:20,color:'#333333',fontSize:14}} numberOfLines={1}>小红妹悠乐果杯过呗过不</Text></View>
+                                <Text style={{flex:1,textAlign:'center',color:'#888888',fontSize:14}}> x 1</Text>
+                                <Text style={{flex:1,textAlign:'center',color:'#888888',fontSize:14}}>￥18</Text>
                             </View>
                         </ScrollView>
                         <ScrollView style={{flex:1}}>
                             <View style={{height:54,flexDirection:'row',alignItems:'center',borderBottomWidth:1,borderBottomColor:'#e6e6e6'}}>
-                                <View style={{flex:2,flexDirection:'row',marginLeft:20}}>
+                                <View style={{flex:1,flexDirection:'row',marginLeft:20,alignItems:'center'}}>
                                     <View style={{width:26,height:26,borderRadius:26,borderWidth:1,borderColor:'#8dc23c'}}>
-                                        <Text style={{color:'#8dc23c',textAlign:'center',lineHeight:26}}>加</Text>
+                                        <Text style={{color:'#8dc23c',textAlign:'center',lineHeight:26,fontSize:14}}>加</Text>
                                     </View>
-                                    <Text style={{color:'#333333',paddingLeft:5}} numberOfLines={1}>小红妹悠乐果杯过呗过不</Text>
+                                    <Text style={{color:'#333333',marginLeft:5,fontSize:14}} numberOfLines={1}>小红妹悠乐果杯过呗过不</Text>
                                 </View>
-                                <Text style={{flex:2,textAlign:'center',color:'#888888',paddingLeft:20}}>周长城</Text>
-                                <Text style={{flex:2,textAlign:'center',color:'#888888'}}>3-20 18:50</Text>
+                                <Text style={{flex:1,textAlign:'center',color:'#888888',paddingLeft:20,fontSize:14}}>周长城</Text>
+                                <Text style={{flex:1,textAlign:'center',color:'#888888',fontSize:14}}>3-20 18:50</Text>
                             </View>
                         </ScrollView>
                     </View>
