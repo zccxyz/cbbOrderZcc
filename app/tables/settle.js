@@ -13,42 +13,46 @@ import {Container, Content, Item, Input, Button, Text, Icon} from 'native-base';
 
 import Color from "../common/Color";
 import Bottom from "../common/Bottom";
+import Top from "../common/Top";
+import MyLeft from "../common/Left";
 
-export default class Settle extends Component {
-    render() {
+export default class Settle extends MyLeft {
+    _init() {
         return (
             <View style={{flex: 1, flexDirection: 'column'}}>
-                <View style={styles.header}>
-                    <View style={{height: 69, justifyContent: 'center'}}>
-                        <Button iconLeft style={styles.backBtn}>
-                            <Icon name='arrow-left' type={'EvilIcons'}></Icon>
-                            <Text>#1号</Text>
-                        </Button>
-                    </View>
-
-                    <View style={{height: 69, flexDirection: 'row', alignItems: 'center'}}>
-                        <View style={{marginRight: 30,}}>
-                            <Text style={{color: Color.tableIndex.pink, textAlign: 'center'}}>共6份/￥284</Text>
-                            <Text style={{color: Color.tableIndex.gray9, textAlign: 'center'}}>(赠送￥42)</Text>
+                <Top com={
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
+                        <View style={{height: 69, justifyContent: 'center'}}>
+                            <Button iconLeft style={styles.backBtn}>
+                                <Icon name='arrow-left' type={'EvilIcons'}></Icon>
+                                <Text>#1号</Text>
+                            </Button>
                         </View>
-                        <Button iconLeft style={styles.pinkBtn}>
-                            <Icon name='notification' type={'Entypo'}></Icon>
-                            <Text>打印预结单</Text>
-                        </Button>
-                        <Button iconLeft style={styles.gary}>
-                            <Icon name='notification' type={'Entypo'}></Icon>
-                            <Text>结账</Text>
-                        </Button>
-                        <Button iconLeft style={styles.pinkBtn}>
-                            <Icon name='notification' type={'Entypo'}></Icon>
-                            <Text>扫码枪</Text>
-                        </Button>
-                        <Button iconLeft style={styles.gary}>
-                            <Icon name='notification' type={'Entypo'}></Icon>
-                            <Text>清台</Text>
-                        </Button>
+
+                        <View style={{height: 69, flexDirection: 'row', alignItems: 'center'}}>
+                            <View style={{marginRight: 30,}}>
+                                <Text style={{color: Color.tableIndex.pink, textAlign: 'center'}}>共6份/￥284</Text>
+                                <Text style={{color: Color.tableIndex.gray9, textAlign: 'center'}}>(赠送￥42)</Text>
+                            </View>
+                            <Button iconLeft style={styles.pinkBtn} small>
+                                <Icon name='notification' type={'Entypo'}></Icon>
+                                <Text>打印预结单</Text>
+                            </Button>
+                            <Button iconLeft style={styles.gary} small>
+                                <Icon name='notification' type={'Entypo'}></Icon>
+                                <Text>结账</Text>
+                            </Button>
+                            <Button iconLeft style={styles.pinkBtn} small>
+                                <Icon name='notification' type={'Entypo'}></Icon>
+                                <Text>扫码枪</Text>
+                            </Button>
+                            <Button iconLeft style={styles.gary} small>
+                                <Icon name='notification' type={'Entypo'}></Icon>
+                                <Text>清台</Text>
+                            </Button>
+                        </View>
                     </View>
-                </View>
+                }/>
                 <View style={styles.contain}>
                     <ScrollView style={{flex:1, height: HEIGHT - 150, backgroundColor: '#ffffff', marginLeft: 8, marginTop: 8, borderWidth: 1, borderColor: '#d9d9d9',marginRight:8}}>
 
@@ -216,8 +220,6 @@ export default class Settle extends Component {
                         </ScrollView>
                     </View>
                 </View>
-
-                <Bottom/>
             </View>
         );
     }
