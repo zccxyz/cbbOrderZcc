@@ -41,6 +41,7 @@ export default class Left extends Component {
             ],
             leftBar:1,
             nowNav: 1,
+            leftClassify: [],
         };
     }
 
@@ -64,7 +65,7 @@ export default class Left extends Component {
                             source={{uri: "http://f.hiphotos.baidu.com/zhidao/pic/item/d1a20cf431adcbef63081c28abaf2edda3cc9fdb.jpg"}}/>
                         <Text style={{color: Color.tableIndex.font, fontSize: 13}}>ZCC</Text>
                     </View>
-                    {this.state.leftBar == 1 ? <TouchableOpacity onPress={()=>{this.setState({leftBar:2})}}>
+                    {/*{this.state.leftBar == 1 ? <TouchableOpacity onPress={()=>{this.setState({leftBar:2})}}>
                     <View style={{
                         width: WIDTH / 15,
                         height: 30,
@@ -92,13 +93,20 @@ export default class Left extends Component {
                               type={'Entypo'}/>
                         <Text style={{color: Color.tableIndex.font, fontSize: 13}}>展开导航</Text>
 
-                    </View></TouchableOpacity> }
+                    </View></TouchableOpacity> }*/}
+                    {this.state.nowNav===1?
+                        <FlatList data={this.state.navArea} renderItem={({item}) => this._leftItemArea(item)} keyExtractor={({v, k}) => k + 'x'} extraData={this.state}/>:
+                        <View style={{height: HEIGHT-50, backgroundColor: Color.tableIndex.leftBg, elevation: 2, flexDirection:'column'}}>
 
+                            <FlatList data={this.state.leftClassify}
+                                      renderItem={({item}) => this._leftItem2(item)} keyExtractor={({v, k}) => k + 'z'} extraData={this.state}/>
+                        </View>}
 
 
                 </View>
                 <View style={{width: WIDTH*14 / 15}}>
-                    <ImageBackground style={{height: HEIGHT - 60}} source={require('../bg/bg2.jpg')}>
+                    <FlatList horizontal style={{backgroundColor: Color.tableIndex.leftBg}} data={this.state.nav} renderItem={({item}) => this._leftItem(item)} keyExtractor={({v, k}) => k + 'x'} extraData={this.state}/>
+                    <ImageBackground style={{height: HEIGHT - 115}} source={require('../bg/bg2.jpg')}>
                         {this._init()}
                     </ImageBackground>
                     <Bottom/>
@@ -107,14 +115,25 @@ export default class Left extends Component {
         )
     }
 
+    _leftItem2(item) {
+        return (
+            <TouchableOpacity onPress={()=>this.setState({type: item.type})}>
+                <View style={{borderBottomWidth:1, borderColor:'#000', height: 50, justifyContent:'center',
+                    alignItems:'center', width: WIDTH/15, backgroundColor: item.type===this.state.type?'white':Color.tableIndex.leftBg}}>
+                    <Text style={{fontSize: 12, color: item.type===this.state.type?'#000':'white'}}>{item.name}</Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
+
     _leftItem(item) {
         return (
             <TouchableOpacity onPress={() => this._tz(item)}>
-                <View style={{width: WIDTH / 15, height: (HEIGHT-120)/14, justifyContent: 'center', alignItems: 'center'}}>
-                    <Icon name={'bowl'} type={'Entypo'} style={{color: item.id===this.state.nowNav ? Color.tableIndex.font : 'gray', fontSize: 15}}/>
-                    <Text style={{color: item.id===this.state.now ? Color.tableIndex.font : 'gray', fontSize: 15}}>{item.name}</Text>
+                <View style={{width: WIDTH / 15, height: 50, justifyContent: 'center', alignItems: 'center',
+                    borderRightWidth:1, borderColor: '#000', backgroundColor:item.id===this.state.nowNav ? 'white':Color.tableIndex.leftBg}}>
+                    <Icon name={'bowl'} type={'Entypo'} style={{color: item.id===this.state.nowNav ? '#000' : 'white', fontSize: 15}}/>
+                    <Text style={{color: item.id===this.state.nowNav ? '#000' : 'white', fontSize: 15}}>{item.name}</Text>
                 </View>
-                <Text style={{backgroundColor: 'black', height: 1}}/>
             </TouchableOpacity>
         )
     }
