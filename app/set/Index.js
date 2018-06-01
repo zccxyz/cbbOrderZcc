@@ -238,7 +238,25 @@ export default class Index extends MyLeft {
                             <View style={{backgroundColor:'#8dc23c',height:50,justifyContent:'center',paddingLeft:100,paddingRight:100}}>
                                 <Text style={{color:'#fff'}}>设置收银台打印机</Text>
                             </View>
-                            <View style={{justifyContent:'center',alignItems:'center',paddingBottom:40,paddingTop:40}}>
+                            <View style={{justifyContent:'center',alignItems:'center',paddingBottom:20,paddingTop:20}}>
+                                <Form style={{height:40,borderWidth:1,borderColor:'#b3b3b3',borderRadius:5,marginBottom:20}}>
+                                    <Picker
+                                        mode="dropdown"
+                                        iosIcon={<Icon name="ios-arrow-down-outline" />}
+                                        placeholder="Select your SIM"
+                                        placeholderStyle={{ color: "#bfc6ea" }}
+                                        placeholderIconColor="#007aff"
+                                        style={{ width:200,height:40 }}
+                                        selectedValue={this.state.selected2}
+                                        onValueChange={this.onValueChange2.bind(this)}
+                                    >
+                                        <Picker.Item label="Wallet" value="key0" />
+                                        <Picker.Item label="ATM Card" value="key1" />
+                                        <Picker.Item label="Debit Card" value="key2" />
+                                        <Picker.Item label="Credit Card" value="key3" />
+                                        <Picker.Item label="Net Banking" value="key4" />
+                                    </Picker>
+                                </Form>
                                 <Form style={{height:40,borderWidth:1,borderColor:'#b3b3b3',borderRadius:5}}>
                                     <Picker
                                         mode="dropdown"
@@ -257,6 +275,14 @@ export default class Index extends MyLeft {
                                         <Picker.Item label="Net Banking" value="key4" />
                                     </Picker>
                                 </Form>
+                            </View>
+                            <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',marginBottom:20}}>
+                                <View style={{justifyContent:'center',alignItems:'center'}}>
+                                    <View><Button style={{backgroundColor:'#fa7159',height:35}}><Text style={{paddingLeft:40,paddingRight:40}}>确定</Text></Button></View>
+                                </View>
+                                <View style={{justifyContent:'center',alignItems:'center'}}>
+                                    <View><Button style={{backgroundColor:'#b3b3b3',height:35}}><Text style={{paddingLeft:40,paddingRight:40}}>取消</Text></Button></View>
+                                </View>
                             </View>
                         </View>
                     </View>
