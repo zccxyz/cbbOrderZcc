@@ -28,6 +28,18 @@ export default class Left extends Component {
                 {name: '交班', zt: false, id: 13},
                 {name: '设置', zt: false, id: 14},
             ],
+            navArea: [
+                {name: 'A区'},
+                {name: 'B区'},
+                {name: 'C区'},
+                {name: 'D区'},
+                {name: 'E区'},
+                {name: 'F区'},
+                {name: 'G区'},
+                {name: 'H区'},
+                {name: 'I区'}
+            ],
+            leftBar:1,
             nowNav: 1,
         };
     }
@@ -52,19 +64,38 @@ export default class Left extends Component {
                             source={{uri: "http://f.hiphotos.baidu.com/zhidao/pic/item/d1a20cf431adcbef63081c28abaf2edda3cc9fdb.jpg"}}/>
                         <Text style={{color: Color.tableIndex.font, fontSize: 13}}>ZCC</Text>
                     </View>
-                    {/*<View style={{
+                    {this.state.leftBar == 1 ? <TouchableOpacity onPress={()=>{this.setState({leftBar:2})}}>
+                    <View style={{
                         width: WIDTH / 15,
-                        height: HEIGHT * 0.5 / 12,
+                        height: 30,
                         justifyContent: 'center',
                         alignItems: 'center',
                         backgroundColor: '#333333'
                     }}>
-                        <Text style={{color: Color.tableIndex.font, fontSize: 13}}>展开区域{this.state.zt}</Text>
+                        <Text style={{color: Color.tableIndex.font, fontSize: 13}}>展开区域</Text>
                         <Icon name={'chevron-small-down'} style={{color: Color.tableIndex.font, fontSize: 13}}
                               type={'Entypo'}/>
-                    </View>*/}
-                    <FlatList data={this.state.nav} renderItem={({item}) => this._leftItem(item)}
-                              keyExtractor={({v, k}) => k + 'x'} extraData={this.state}/>
+                    </View></TouchableOpacity>: null }
+                    { this.state.leftBar == 1 ? <FlatList data={this.state.nav} renderItem={({item}) => this._leftItem(item)} keyExtractor={({v, k}) => k + 'x'} extraData={this.state}/>
+                        :<FlatList data={this.state.navArea} renderItem={({item}) => this._leftItemArea(item)} keyExtractor={({v, k}) => k + 'x'} extraData={this.state}/>
+                    }
+
+                    {this.state.leftBar == 1 ? null : <TouchableOpacity onPress={()=>{this.setState({leftBar:1})}}>
+                        <View style={{
+                        width: WIDTH / 15,
+                        height: 30,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: '#333333'
+                    }}>
+                        <Icon name={'chevron-small-up'} style={{color: Color.tableIndex.font, fontSize: 13}}
+                              type={'Entypo'}/>
+                        <Text style={{color: Color.tableIndex.font, fontSize: 13}}>展开导航</Text>
+
+                    </View></TouchableOpacity> }
+
+
+
                 </View>
                 <View style={{width: WIDTH*14 / 15}}>
                     <ImageBackground style={{height: HEIGHT - 60}} source={require('../bg/bg2.jpg')}>
@@ -79,8 +110,19 @@ export default class Left extends Component {
     _leftItem(item) {
         return (
             <TouchableOpacity onPress={() => this._tz(item)}>
-                <View style={{width: WIDTH / 15, height: (HEIGHT-90)/14, justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{width: WIDTH / 15, height: (HEIGHT-120)/14, justifyContent: 'center', alignItems: 'center'}}>
                     <Icon name={'bowl'} type={'Entypo'} style={{color: item.id===this.state.nowNav ? Color.tableIndex.font : 'gray', fontSize: 15}}/>
+                    <Text style={{color: item.id===this.state.now ? Color.tableIndex.font : 'gray', fontSize: 15}}>{item.name}</Text>
+                </View>
+                <Text style={{backgroundColor: 'black', height: 1}}/>
+            </TouchableOpacity>
+        )
+    }
+
+    _leftItemArea(item) {
+        return (
+            <TouchableOpacity onPress={() => {}}>
+                <View style={{width: WIDTH / 15, height: (HEIGHT-120) / this.state.navArea.length , justifyContent: 'center', alignItems: 'center'}}>
                     <Text style={{color: item.id===this.state.now ? Color.tableIndex.font : 'gray', fontSize: 15}}>{item.name}</Text>
                 </View>
                 <Text style={{backgroundColor: 'black', height: 1}}/>

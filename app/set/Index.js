@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
-    View, Switch, FlatList, ImageBackground,
+    View, Switch, FlatList, ImageBackground,Modal
 } from 'react-native';
-import { Text, Thumbnail, Icon, Item, Input, Button } from 'native-base';
+import { Text, Thumbnail, Icon, Item, Input, Button,Form,Picker } from 'native-base';
 import Color from "../common/Color";
 import MyLeft from "../common/Left";
 import Bg from "../common/Bg";
@@ -15,6 +15,13 @@ export default class Index extends MyLeft {
         super(props);
         Object.assign(this.state, {
             nowNav: 14,
+            zt:false,
+            selected2: undefined
+        });
+    }
+    onValueChange2(value) {
+        this.setState({
+            selected2: value
         });
     }
 
@@ -78,7 +85,7 @@ export default class Index extends MyLeft {
                             <Text>收银台</Text>
                         </View>
                         <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
-                            <Text>未设置</Text>
+                            <Text onPress={()=>{this.setState({zt:true})}}>未设置</Text>
                         </View>
                         <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
                             <Text>未设置</Text>
@@ -224,6 +231,36 @@ export default class Index extends MyLeft {
                         <Text>重庆餐宝宝有限公司</Text>
                     </View>
                 </View>
+
+                <Modal animationType={'fade'} visible={this.state.zt} onRequestClose={()=>this.setState({zt: false})} transparent={true}>
+                    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                        <View style={{backgroundColor:'#fff'}}>
+                            <View style={{backgroundColor:'#8dc23c',height:50,justifyContent:'center',paddingLeft:100,paddingRight:100}}>
+                                <Text style={{color:'#fff'}}>设置收银台打印机</Text>
+                            </View>
+                            <View style={{justifyContent:'center',alignItems:'center',paddingBottom:40,paddingTop:40}}>
+                                <Form style={{height:40,borderWidth:1,borderColor:'#b3b3b3',borderRadius:5}}>
+                                    <Picker
+                                        mode="dropdown"
+                                        iosIcon={<Icon name="ios-arrow-down-outline" />}
+                                        placeholder="Select your SIM"
+                                        placeholderStyle={{ color: "#bfc6ea" }}
+                                        placeholderIconColor="#007aff"
+                                        style={{ width:200,height:40 }}
+                                        selectedValue={this.state.selected2}
+                                        onValueChange={this.onValueChange2.bind(this)}
+                                    >
+                                        <Picker.Item label="Wallet" value="key0" />
+                                        <Picker.Item label="ATM Card" value="key1" />
+                                        <Picker.Item label="Debit Card" value="key2" />
+                                        <Picker.Item label="Credit Card" value="key3" />
+                                        <Picker.Item label="Net Banking" value="key4" />
+                                    </Picker>
+                                </Form>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         )
     }
