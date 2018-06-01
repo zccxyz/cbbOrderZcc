@@ -7,7 +7,6 @@ import {
 import {Text, Thumbnail, Icon, Item, Input, Button} from 'native-base';
 import Color from "../common/Color";
 import Bottom from "./Bottom";
-import RealLeft from "./RealLeft";
 
 export default class Left extends Component {
     constructor(props) {
