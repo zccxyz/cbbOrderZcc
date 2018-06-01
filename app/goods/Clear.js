@@ -29,6 +29,14 @@ export default class Index extends MyLeft {
                 {name: 'A06', num: 12, price: 2125},
             ],
             type: 1,
+            nowNav: 2,
+            /*leftClassify: [
+                {name: '全部', type: 1},
+                {name: '未沽清', type: 2},
+                {name: '即将售罄', type: 3},
+                {name: '售罄', type: 4},
+                {name: '已下架', type: 5},
+            ],*/
         })
     }
 

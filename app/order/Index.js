@@ -21,6 +21,12 @@ export default class Index extends MyLeft {
         Object.assign(this.state, {
             type: 1,
             nowNav: 4,
+            leftClassify: [
+                {name: '门店采购单', type: 1},
+                {name: '异地消费订单', type: 2},
+                {name: '门店消费订单', type: 3},
+                {name: '门店报损订单', type: 4},
+            ],
         });
     }
 
@@ -28,26 +34,6 @@ export default class Index extends MyLeft {
         const state = this.state;
         return(
             <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
-                <Top com={
-                    <View style={{flex: 1,  flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
-                        <View style={{height: GAO, width: 320, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
-
-                            <Text onPress={()=>this.setState({type: 1})} style={{height: GAO, width: 80, textAlign:'center',
-                                lineHeight: GAO, borderRightWidth: 1,color:state.type===1?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===1?Color.tableIndex.photoBg:null, fontSize: 12}}>门店采购单</Text>
-                            <Text onPress={()=>this.setState({type: 2})} style={{height: GAO, width: 80, textAlign:'center',
-                                lineHeight: GAO, borderRightWidth: 1,color:state.type===2?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===2?Color.tableIndex.photoBg:null, fontSize: 12}}>异地消费订单</Text>
-                            <Text onPress={()=>this.setState({type: 3})} style={{height: GAO, width: 80, textAlign:'center',
-                                lineHeight: GAO, borderRightWidth: 1,color:state.type===3?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===3?Color.tableIndex.photoBg:null, fontSize: 12}}>门店消费订单</Text>
-                            <Text onPress={()=>this.setState({type: 4})} style={{height: GAO, width: 80, textAlign:'center',
-                                lineHeight: GAO, borderRightWidth: 1,color:state.type===4?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===4?Color.tableIndex.photoBg:null, fontSize: 12}}>门店报损订单</Text>
-                        </View>
-                    </View>
-                }/>
-
                 {state.type===1?<Order/>:null}
                 {state.type===2?<NonlocalOder/>:null}
                 {state.type===3?<StoreOrder/>:null}

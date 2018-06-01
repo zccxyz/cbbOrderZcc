@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
-    View, Switch, FlatList, ImageBackground,
+    View, Switch, FlatList, ImageBackground, ScrollView,
 } from 'react-native';
 import { Text, Thumbnail, Icon, Item, Input, Button } from 'native-base';
 import Color from "../common/Color";
@@ -18,33 +18,25 @@ export default class    Index extends MyLeft {
         Object.assign(this.state, {
             type: 1,
             nowNav: 9,
+            leftClassify: [
+                {name: '门店信息', type: 1},
+                {name: '日常管理', type: 2},
+                {name: '用户反馈', type: 3},
+            ],
         });
     }
 
     _init() {
         const state = this.state;
         return(
-            <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
-                <Top com={
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
-                        <View style={{height: GAO, width: 240, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
+            <ScrollView>
+                <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
 
-                            <Text onPress={()=>this.setState({type: 1})} style={{height: GAO, width: 80, backgroundColor: state.type===1?Color.tableIndex.photoBg:null,
-                                textAlign:'center', lineHeight: GAO, color: state.type===1?Color.tableIndex.font:'black', fontSize:14}}>门店信息</Text>
-                            <Text style={{height: GAO, width: 80, textAlign:'center', lineHeight: GAO, borderRightWidth: 1,color:state.type===2?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===2?Color.tableIndex.photoBg:null, fontSize:14}}
-                                  onPress={()=>this.setState({type: 2})}>日常管理</Text>
-                            <Text style={{height: GAO, width: 80, textAlign:'center', lineHeight: GAO, borderRightWidth: 1,color:state.type===3?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===3?Color.tableIndex.photoBg:null, fontSize:14}}
-                                  onPress={()=>this.setState({type: 3})}>用户反馈</Text>
-                        </View>
-                    </View>
-                }/>
-
-                {state.type===1?<Info/>:null}
-                {state.type===2?<Day/>:null}
-                {state.type===3?<Feedback/>:null}
-            </View>
+                    {state.type===1?<Info/>:null}
+                    {state.type===2?<Day/>:null}
+                    {state.type===3?<Feedback/>:null}
+                </View>
+            </ScrollView>
         )
     }
 }
