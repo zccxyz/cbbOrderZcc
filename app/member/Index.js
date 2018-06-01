@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
-    View, Switch, FlatList, ImageBackground,
+    View, Switch, FlatList, ImageBackground,Modal
 } from 'react-native';
 import { Text, Thumbnail, Icon, Item, Input, Button, Card, CardItem, Body } from 'native-base';
 import Color from "../common/Color";
@@ -29,6 +29,9 @@ export default class Index extends MyLeft {
                 {name: 'A06', num: 12, price: 2125},
             ],
             nowNav: 5,
+            zt:false,
+            zt1:false,
+            zt2:false
         });
     }
 
@@ -57,6 +60,49 @@ export default class Index extends MyLeft {
                 </View>
 
                 <Bottom/>
+
+                <Modal animationType={'fade'} visible={this.state.zt} onRequestClose={()=>this.setState({zt: false})} transparent={true}>
+                    <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.5)',justifyContent:'center',alignItems:'center'}}>
+
+                        <View style={{backgroundColor:'#fff'}}>
+
+                            <View style={{backgroundColor:'#8dc23c',height:40}}>
+                                <Text style={{color:'#fff',paddingLeft:30,lineHeight:40,paddingRight:30}}>会员充值</Text>
+                            </View>
+
+                            <View style={{flexDirection:'row',marginRight:30,height:60,alignItems:'center'}}>
+                                <Text style={{paddingLeft:30}}>会员名称：</Text>
+                                <Text style={{paddingLeft:30}}>acc</Text>
+                            </View>
+
+                            <View style={{flexDirection:'row',marginRight:30,height:60,alignItems:'center'}}>
+                                <Text style={{paddingLeft:30}}>会员号码：</Text>
+                                <Text style={{paddingLeft:30}}>1852356699</Text>
+                            </View>
+
+                            <View style={{flexDirection:'row',marginRight:30,height:60,alignItems:'center'}}>
+                                <Text style={{paddingLeft:30}}>余额：</Text>
+                                <Text style={{paddingLeft:30,fontSize:26,color:'#8dc23c'}}>0.00</Text>
+                            </View>
+
+                            <View style={{flexDirection:'row',marginRight:30,height:60,alignItems:'center'}}>
+                                <Text style={{paddingLeft:30}}>充值金额：</Text>
+                                <Item bordered style={{width:150}}>
+                                    <Input bordered style={{width:150}} placeholder='请输入充值金额'/>
+                                </Item>
+                            </View>
+
+                            <View style={{flexDirection:'row',marginRight:30,height:60,alignItems:'center'}}>
+                                <Text style={{paddingLeft:30}}>在线支付：</Text>
+                                <View><Button><Text>在线支付</Text></Button></View>
+                                <View><Button><Text>现金</Text></Button></View>
+                            </View>
+                        </View>
+
+                    </View>
+                </Modal>
+
+
             </View>
         );
     }
@@ -81,7 +127,7 @@ export default class Index extends MyLeft {
                 </View>
                 <View style={{backgroundColor:'#A39104', flexDirection:'row', justifyContent:'flex-end',height:30}}>
                     <Text style={{color: 'white', width: 80,textAlign:'center',height: 30, lineHeight:30, backgroundColor:'#019D86'}}>送券</Text>
-                    <Text style={{color: 'white', width: 80,textAlign:'center',height: 30, lineHeight:30}}>充值</Text>
+                    <Text style={{color: 'white', width: 80,textAlign:'center',height: 30, lineHeight:30}} onPress={()=>{this.setState({zt:true})}}>充值</Text>
                 </View>
             </View>
         )
