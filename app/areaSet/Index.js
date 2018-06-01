@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
-    View, Switch, FlatList, ImageBackground,
+    View, Switch, FlatList, ImageBackground, ScrollView,
 } from 'react-native';
 import { Text, Thumbnail, Icon, Item, Input, Button } from 'native-base';
 import Color from "../common/Color";
@@ -17,29 +17,23 @@ export default class Index extends MyLeft {
         Object.assign(this.state, {
             type: 1,
             nowNav: 3,
+            leftClassify: [
+                {name: '区域配置', type: 1},
+                {name: '座位配置', type: 2},
+            ],
         })
     }
 
     _init() {
         const state = this.state;
         return(
-            <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
-                <Top com={
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
-                        <View style={{height: GAO, width: 160, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
+            <ScrollView>
+                <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
 
-                            <Text onPress={()=>this.setState({type: 1})} style={{height: GAO, width: 80, backgroundColor: state.type===1?Color.tableIndex.photoBg:null,
-                                textAlign:'center', lineHeight: GAO, color: state.type===1?Color.tableIndex.font:'black', fontSize: 14}}>区域配置</Text>
-                            <Text style={{height: GAO, width: 80, fontSize: 14, textAlign:'center', lineHeight: GAO, borderRightWidth: 1,color:state.type===2?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===2?Color.tableIndex.photoBg:null}}
-                                  onPress={()=>this.setState({type: 2})}>座位配置</Text>
-                        </View>
-                    </View>
-                }/>
-
-                {state.type===1?<Area/>:null}
-                {state.type===2?<Seat/>:null}
-            </View>
+                    {state.type===1?<Area/>:null}
+                    {state.type===2?<Seat/>:null}
+                </View>
+            </ScrollView>
         )
     }
 }
