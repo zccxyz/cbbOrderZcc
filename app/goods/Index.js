@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
-    View, Switch, FlatList, ImageBackground,
+    View, Switch, FlatList, ImageBackground, ScrollView,
 } from 'react-native';
 import { Text, Thumbnail, Icon, Item, Input, Button } from 'native-base';
 import Color from "../common/Color";
@@ -19,6 +19,12 @@ export default class Bg extends MyLeft {
         Object.assign(this.state, {
             type: 4,
             nowNav: 2,
+            leftClassify: [
+                {name:'商品管理', type: 1},
+                {name:'库存管理', type: 2},
+                {name:'商品类别', type: 3},
+                {name:'商品采购', type: 4},
+            ],
         });
     }
 
@@ -37,31 +43,14 @@ export default class Bg extends MyLeft {
             </View>
         );
         return(
-            <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
-                <Top com={
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
-                        <View style={{height: GAO, width: 320, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
-
-                            <Text onPress={()=>this.setState({type: 1})} style={{height: GAO, width: 80, backgroundColor: state.type===1?Color.tableIndex.photoBg:null,
-                                textAlign:'center', lineHeight: GAO, color: state.type===1?Color.tableIndex.font:'black'}}>商品管理</Text>
-                            <Text style={{height: GAO, width: 80, textAlign:'center', lineHeight: GAO, borderRightWidth: 1,color:state.type===2?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===2?Color.tableIndex.photoBg:null}}
-                                  onPress={()=>this.setState({type: 2})}>库存管理</Text>
-                            <Text onPress={()=>this.setState({type: 3})} style={{height: GAO, width: 80, textAlign:'center',
-                                lineHeight: GAO, borderRightWidth: 1,color:state.type===3?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===3?Color.tableIndex.photoBg:null}}>商品类别</Text>
-                            <Text onPress={()=>this.setState({type: 4})} style={{height: GAO, width: 80, textAlign:'center',
-                                lineHeight: GAO, borderRightWidth: 1,color:state.type===4?Color.tableIndex.font:'black',
-                                borderColor: Color.tableIndex.photoBg, backgroundColor: state.type===4?Color.tableIndex.photoBg:null}}>商品采购</Text>
-                        </View>
-                    </View>
-                }/>
-
-                {state.type===1?<GoodsManage/>:null}
-                {state.type===2?<StockManage/>:null}
-                {state.type===3?<Classify/>:null}
-                {state.type===4?<Purchase/>:null}
-            </View>
+            <ScrollView>
+                <View style={{width: WIDTH * 14 / 15, height: HEIGHT - 20}}>
+                    {state.type===1?<GoodsManage/>:null}
+                    {state.type===2?<StockManage/>:null}
+                    {state.type===3?<Classify/>:null}
+                    {state.type===4?<Purchase/>:null}
+                </View>
+            </ScrollView>
         )
     }
 }
