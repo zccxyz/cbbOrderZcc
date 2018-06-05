@@ -16,13 +16,26 @@ export default class Login extends Component {
             name: '',
             pw: '',
             role:0
-
         }
     }
 
     _login() {
-        fetch(ym+request.login).then(r=>r.json())
+        if(this.state.name==='' && this.state.pw==='') {
+            alert('请填完以上内容');return
+        }
+        fetch(ym+request.login, {
+            method: 'POST', body: JSON.stringify({username: this.state.name, password: this.state.pw})
+        }).then(r=>r.json())
             .then(rs=>{
+                if(rs.errCode===0) {
+                    storage.save({
+                        key: 'user',
+                        data: rs.data
+                    })
+                    alert('登陆成功');
+                }else{
+                    alert(rs.message)
+                }
                 console.log(rs)
             }).catch(err=>{
                 console.log(err)
