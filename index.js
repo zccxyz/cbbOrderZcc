@@ -1,7 +1,8 @@
 import { AppRegistry, Dimensions } from 'react-native';
 import App from './App';
 import Save from './app/common/Save';
-import Require from './app/common/Require';
+import Request from './app/common/Request';
+import Request2 from './app/common/Request2';
 
 GLOBAL.HEIGHT = Dimensions.get('window').height;
 GLOBAL.WIDTH = Dimensions.get('window').width;
@@ -19,8 +20,10 @@ GLOBAL.GAO = 40;
 GLOBAL.BgColor = 'rgba(255,255,255,.5)';
 GLOBAL.TableColor = 'rgba(255,255,255,.8)';
 GLOBAL.storage = Save;
-GLOBAL.Require = Require;
+GLOBAL.Request = Request;
+GLOBAL.Request2 = Request2;
 GLOBAL.ym = "http://192.168.0.158/Checkstand/";
+GLOBAL.ym2 = "http://192.168.0.158/Checkstand/";
 GLOBAL.area = [
     {
         "name": "北京",
