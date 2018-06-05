@@ -41,7 +41,7 @@ export default class Index extends MyLeft {
 
         return (
             <View style={{width: WIDTH*14/15, height: HEIGHT-20}}>
-                <Top com={
+               <Top com={
                     <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',flex:1}}>
                         <View style={{height: GAO, width: 320, borderRadius: 5, flexDirection: 'row', borderWidth: 1,borderColor: Color.tableIndex.photoBg}}>
                             <Text style={{height: GAO, width: 80, backgroundColor: Color.tableIndex.photoBg,
@@ -62,38 +62,38 @@ export default class Index extends MyLeft {
                         </Item>
                     </View>
                 }/>
-                {/*<Top com={*/}
-                    {/*<View style={{flex:1,borderBottomWidth:2,borderColor:'#8dc23c'}}>*/}
-                        {/*<View style={{flex:1,flexDirection:'row',alignItems:'center'}}>*/}
-                            {/*<Text style={{color:'#fa7159',fontSize:14,paddingLeft:20,paddingRight:20}}>今日</Text>*/}
-                            {/*<View style={{flex:1,flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>*/}
-                                {/*<Text style={{fontSize:14}}>营业额 98.79</Text>*/}
-                                {/*<Text style={{fontSize:14}}>已结金额 98.79</Text>*/}
-                                {/*<Text style={{fontSize:14}}>已结桌数 3</Text>*/}
-                                {/*<Text style={{fontSize:14}}>未结金额 1</Text>*/}
-                                {/*<Text style={{fontSize:14}}>未结桌数 </Text>*/}
-                                {/*<Text style={{fontSize:14}}>开台数 4</Text>*/}
-                                {/*<Text style={{fontSize:14}}>桌单价 24.47</Text>*/}
-                                {/*<Text style={{fontSize:14}}>就餐人数 4</Text>*/}
-                                {/*<Text style={{fontSize:14}}>客单价： 24.47</Text>*/}
-                            {/*</View>*/}
-                        {/*</View>*/}
-                        {/*<View style={{flex:1,flexDirection:'row',alignItems:'center'}}>*/}
-                            {/*<Text style={{color:'#fa7159',fontSize:14,paddingLeft:20,paddingRight:20}}>今日</Text>*/}
-                            {/*<View style={{flex:1,flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>*/}
-                                {/*<Text style={{fontSize:14}}>营业额 98.79</Text>*/}
-                                {/*<Text style={{fontSize:14}}>已结金额 98.79</Text>*/}
-                                {/*<Text style={{fontSize:14}}>已结桌数 3</Text>*/}
-                                {/*<Text style={{fontSize:14}}>未结金额 1</Text>*/}
-                                {/*<Text style={{fontSize:14}}>未结桌数 </Text>*/}
-                                {/*<Text style={{fontSize:14}}>开台数 4</Text>*/}
-                                {/*<Text style={{fontSize:14}}>桌单价 24.47</Text>*/}
-                                {/*<Text style={{fontSize:14}}>就餐人数 4</Text>*/}
-                                {/*<Text style={{fontSize:14}}>客单价： 24.47</Text>*/}
-                            {/*</View>*/}
-                        {/*</View>*/}
-                    {/*</View>*/}
                 {/*<Top com={
+                    <View style={{flex:1,borderBottomWidth:2,borderColor:'#8dc23c'}}>
+                        <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+                            <Text style={{color:'#fa7159',fontSize:14,paddingLeft:20,paddingRight:20}}>今日</Text>
+                            <View style={{flex:1,flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
+                                <Text style={{fontSize:14}}>营业额 98.79</Text>
+                                <Text style={{fontSize:14}}>已结金额 98.79</Text>
+                                <Text style={{fontSize:14}}>已结桌数 3</Text>
+                                <Text style={{fontSize:14}}>未结金额 1</Text>
+                                <Text style={{fontSize:14}}>未结桌数 </Text>
+                                <Text style={{fontSize:14}}>开台数 4</Text>
+                                <Text style={{fontSize:14}}>桌单价 24.47</Text>
+                                <Text style={{fontSize:14}}>就餐人数 4</Text>
+                                <Text style={{fontSize:14}}>客单价： 24.47</Text>
+                            </View>
+                        </View>
+                        <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+                            <Text style={{color:'#fa7159',fontSize:14,paddingLeft:20,paddingRight:20}}>今日</Text>
+                            <View style={{flex:1,flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
+                                <Text style={{fontSize:14}}>营业额 98.79</Text>
+                                <Text style={{fontSize:14}}>已结金额 98.79</Text>
+                                <Text style={{fontSize:14}}>已结桌数 3</Text>
+                                <Text style={{fontSize:14}}>未结金额 1</Text>
+                                <Text style={{fontSize:14}}>未结桌数 </Text>
+                                <Text style={{fontSize:14}}>开台数 4</Text>
+                                <Text style={{fontSize:14}}>桌单价 24.47</Text>
+                                <Text style={{fontSize:14}}>就餐人数 4</Text>
+                                <Text style={{fontSize:14}}>客单价： 24.47</Text>
+                            </View>
+                        </View>
+                    </View> }/>
+                <Top com={
                     <View style={{flex:1,justifyContent:'center'}}>
                         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
                             <Text>筛选</Text>
