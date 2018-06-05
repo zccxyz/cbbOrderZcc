@@ -33,7 +33,7 @@ export default class Login extends Component {
             <ImageBackground source={require('./bg/logo.png')} style={{width:WIDTH, height:HEIGHT}}>
                 <View style={{height:HEIGHT/2}}/>
                 <View style={{height:HEIGHT/2, alignItems:'center'}}>
-                    <View style={{height:HEIGHT/2, width: WIDTH/2}}>
+                    <View style={{height:HEIGHT/2, width: WIDTH/3}}>
                         <Item rounded style={{marginBottom: 10}}>
                             <Icon name='ios-person-outline' type={'Ionicons'} />
                             <Input placeholder='请输入您的账号' onChangeText={e=>this.setState({name: e})}/>
