@@ -19,7 +19,7 @@ export default class Login extends Component {
     }
 
     _login() {
-        fetch(ym+Require.login).then(r=>r.json())
+        fetch(ym+Request.login).then(r=>r.json())
             .then(rs=>{
                 console.log(rs)
             }).catch(err=>{
