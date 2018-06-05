@@ -1,5 +1,6 @@
 import { AppRegistry, Dimensions } from 'react-native';
 import App from './App';
+import Save from './app/common/Save';
 
 GLOBAL.HEIGHT = Dimensions.get('window').height;
 GLOBAL.WIDTH = Dimensions.get('window').width;
@@ -16,6 +17,7 @@ GLOBAL.options = {
 GLOBAL.GAO = 40;
 GLOBAL.BgColor = 'rgba(255,255,255,.5)';
 GLOBAL.TableColor = 'rgba(255,255,255,.8)';
+GLOBAL.storage = Save;
 GLOBAL.area = [
     {
         "name": "北京",
