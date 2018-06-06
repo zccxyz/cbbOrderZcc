@@ -28,21 +28,19 @@ export default class Left extends Component {
                 {name: '交班', zt: false, id: 13},
                 {name: '设置', zt: false, id: 14},
             ],
-            navArea: [
-                {name: 'A区'},
-                {name: 'B区'},
-                {name: 'C区'},
-                {name: 'D区'},
-                {name: 'E区'},
-                {name: 'F区'},
-                {name: 'G区'},
-                {name: 'H区'},
-                {name: 'I区'}
-            ],
+            navArea: [],
             leftBar:1,
             nowNav: 1,
             leftClassify: [],
+            username: '',
+            nowArea: 0,
         };
+    }
+
+    _check() {
+        if(userInfo==null) {
+            this.props.navigation.goBack();
+        }
     }
 
     componentWillMount() {
@@ -63,7 +61,7 @@ export default class Left extends Component {
                         backgroundColor: Color.tableIndex.photoBg}}>
                         <Thumbnail small
                             source={{uri: "http://f.hiphotos.baidu.com/zhidao/pic/item/d1a20cf431adcbef63081c28abaf2edda3cc9fdb.jpg"}}/>
-                        <Text style={{color: Color.tableIndex.font, fontSize: 13}}>ZCC</Text>
+                        <Text style={{color: Color.tableIndex.font, fontSize: 13}}>{this.state.username}</Text>
                     </View>
                     {/*{this.state.leftBar == 1 ? <TouchableOpacity onPress={()=>{this.setState({leftBar:2})}}>
                     <View style={{
@@ -105,7 +103,8 @@ export default class Left extends Component {
 
                 </View>
                 <View style={{width: WIDTH*14 / 15}}>
-                    <FlatList horizontal style={{backgroundColor: Color.tableIndex.leftBg}} data={this.state.nav} renderItem={({item}) => this._leftItem(item)} keyExtractor={({v, k}) => k + 'x'} extraData={this.state}/>
+                    <FlatList horizontal style={{backgroundColor: Color.tableIndex.leftBg}} data={this.state.nav}
+                              renderItem={({item}) => this._leftItem(item)} keyExtractor={({v, k}) => k + 'x'} extraData={this.state}/>
                     <ImageBackground style={{height: HEIGHT - 115}} source={require('../bg/bg2.jpg')}>
                         {this._init()}
                     </ImageBackground>
@@ -140,9 +139,10 @@ export default class Left extends Component {
 
     _leftItemArea(item) {
         return (
-            <TouchableOpacity onPress={() => {}}>
-                <View style={{width: WIDTH / 15, height: (HEIGHT-120) / this.state.navArea.length , justifyContent: 'center', alignItems: 'center'}}>
-                    <Text style={{color: item.id===this.state.now ? Color.tableIndex.font : 'gray', fontSize: 15}}>{item.name}</Text>
+            <TouchableOpacity onPress={() => this._change(item)}>
+                <View style={{width: WIDTH / 15, height: (HEIGHT-120) / this.state.navArea.length , justifyContent: 'center', alignItems: 'center',
+                backgroundColor: item.id===this.state.now ? 'white': Color.tableIndex.leftBg}}>
+                    <Text style={{color: item.id===this.state.now ? 'black':Color.tableIndex.font, fontSize: 15}}>{item.name}</Text>
                 </View>
                 <Text style={{backgroundColor: 'black', height: 1}}/>
             </TouchableOpacity>
@@ -199,5 +199,30 @@ export default class Left extends Component {
             }
             //this.setState({nowNav: item.id});
         }
+    }
+
+    _change(item) {
+
+    }
+
+    _post(method, params) {
+        return fetch(`${ym+method}?token=${userInfo.app_token}`, {
+            method: "POST", body: JSON.stringify(params)
+        }).then(r=>r.json())
+            .then(rs=>{
+                return rs;
+            }).catch(e=>{
+            return e;
+        })
+    }
+
+    _get(method, params) {
+        console.log(`${ym+method}?token=${userInfo.app_token}&${params}`, '地址');
+        return fetch(`${ym+method}?token=${userInfo.app_token}&${params}`).then(r=>r.json())
+            .then(rs=>{
+                return rs;
+            }).catch(e=>{
+                return e;
+        })
     }
 }

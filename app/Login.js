@@ -19,6 +19,22 @@ export default class Login extends Component {
         }
     }
 
+    componentDidMount() {
+        this._check();
+    }
+
+    _check() {
+        storage.load({
+            key: 'user',
+        }).then(rs=>{
+            userInfo = rs
+            this.props.navigation.navigate('tablesIndex');
+            //console.log(rs, '用户信息');
+        }).catch(e=>{
+            console.log(e)
+        });
+    }
+
     _login() {
         if(this.state.name==='' && this.state.pw==='') {
             alert('请填完以上内容');return
@@ -31,8 +47,9 @@ export default class Login extends Component {
                     storage.save({
                         key: 'user',
                         data: rs.data
-                    })
-                    alert('登陆成功');
+                    });
+                    userInfo = rs.data;
+                    this.props.navigation.navigate('tablesIndex');
                 }else{
                     alert(rs.message)
                 }

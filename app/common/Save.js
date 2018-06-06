@@ -1,7 +1,7 @@
 import Storage from 'react-native-storage';
 import { AsyncStorage } from 'react-native';
 
-var storage = new Storage({
+let storage = new Storage({
     // 最大容量，默认值1000条数据循环存储
     size: 1000,
 
@@ -23,7 +23,7 @@ var storage = new Storage({
     // 或是写到另一个文件里，这里require引入
     //sync: require('你可以另外写一个文件专门处理sync')
 
-})
+});
 
 // 最好在全局范围内创建一个（且只有一个）storage实例，方便直接调用
 

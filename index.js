@@ -1,6 +1,6 @@
 import { AppRegistry, Dimensions } from 'react-native';
 import App from './App';
-import Save from './app/common/Save';
+import Storage from './app/common/Save';
 import Request from './app/common/Request';
 import Request2 from './app/common/Request2';
 
@@ -19,9 +19,10 @@ GLOBAL.options = {
 GLOBAL.GAO = 40;
 GLOBAL.BgColor = 'rgba(255,255,255,.5)';
 GLOBAL.TableColor = 'rgba(255,255,255,.8)';
-GLOBAL.storage = Save;
+GLOBAL.storage = Storage;
 GLOBAL.request = Request;
 GLOBAL.request2 = Request2;
+GLOBAL.userInfo = null;
 GLOBAL.ym = "http://192.168.0.158/Checkstand/";
 GLOBAL.ym2 = "http://192.168.0.158/Checkstand/";
 GLOBAL.area = [
