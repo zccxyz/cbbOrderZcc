@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
-    View, Switch, FlatList, TouchableOpacity, DeviceEventEmitter, ImageBackground, Picker
+    View, Switch, FlatList, TouchableOpacity, DeviceEventEmitter, ImageBackground, Picker, ToastAndroid,
 } from 'react-native';
 import {Text, Thumbnail, Icon, Item, Input, Button} from 'native-base';
 import Color from "../common/Color";
@@ -217,12 +217,19 @@ export default class Left extends Component {
     }
 
     _get(method, params) {
-        console.log(`${ym+method}?token=${userInfo.app_token}&${params}`, '地址');
         return fetch(`${ym+method}?token=${userInfo.app_token}&${params}`).then(r=>r.json())
             .then(rs=>{
                 return rs;
             }).catch(e=>{
                 return e;
         })
+    }
+
+    _success(msg) {
+        ToastAndroid.show(msg, ToastAndroid.SHORT);
+    }
+
+    _error(rs) {
+
     }
 }

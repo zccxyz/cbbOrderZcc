@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
-    View, Switch, FlatList, ImageBackground, Modal, ScrollView, TouchableOpacity,
+    View, Switch, FlatList, ImageBackground, Modal, ScrollView, TouchableOpacity, ToastAndroid,
 } from 'react-native';
 import {Text, Thumbnail, Icon, Item, Input, Button, Picker} from 'native-base';
 import Color from "../common/Color";
@@ -21,10 +21,18 @@ export default class Index extends MyLeft {
             zt2: false,
             zt3: false,
             zt4: false,
+            zt6: false,
+            zt7: false,
+            zt8: false,
             now: 0,
             zt5: 1,
             xyz: [],
             num: '',
+            waiters: [],
+            waiter_id: 0,
+            t: null,
+            can: [],
+            nowCan: null,
         });
     }
 
@@ -120,6 +128,17 @@ export default class Index extends MyLeft {
             }
         }
         this.setState({tables: t, now: 0, zt5: 1});
+    }
+
+    _hz() {
+        let t = [];
+        for(let v of this.state.bfTables) {
+            if(v.order_id == 0) {
+                v.zt = false;
+                t.push(v);
+            }
+        }
+        this.setState({can: t, zt6: true});
     }
 
     _init() {
@@ -340,82 +359,88 @@ export default class Index extends MyLeft {
                             paddingRight: 40
                         }}>
                             <View style={{flexDirection: 'row'}}>
-                                <View style={{marginRight: 90}}>
-                                    <Button style={{
-                                        backgroundColor: Color.tableIndex.photoBg,
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        width: 80,
-                                        height: 80,
-                                        borderRadius: 20
-                                    }}>
-                                        <Icon name='format-horizontal-align-center'
-                                              type='MaterialCommunityIcons'></Icon>
-                                        <Text style={{fontSize: 12}}>拼台</Text>
-                                    </Button>
-                                </View>
-                                <View>
-                                    <Button style={{
-                                        backgroundColor: Color.tableIndex.photoBg,
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        width: 80,
-                                        height: 80,
-                                        borderRadius: 20
-                                    }}>
-                                        <Icon name='repeat' type='Feather'></Icon>
-                                        <Text style={{fontSize: 12}}>换桌</Text>
-                                    </Button>
-                                </View>
+                                {this.state.t && this.state.t.order_id==0?(
+                                    <View style={{marginRight: 90}}>
+                                        <Button style={{
+                                            backgroundColor: Color.tableIndex.photoBg,
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            width: 80,
+                                            height: 80,
+                                            borderRadius: 20}} onPress={()=>this._pt()}>
+                                            <Icon name='format-horizontal-align-center'
+                                                  type='MaterialCommunityIcons'></Icon>
+                                            <Text style={{fontSize: 12}}>拼台</Text>
+                                        </Button>
+                                    </View>
+                                ):null}
+                                {this.state.t && this.state.t.order_id>0?(
+                                    <View>
+                                        <Button style={{
+                                            backgroundColor: Color.tableIndex.photoBg,
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            width: 80,
+                                            height: 80,
+                                            borderRadius: 20}} onPress={()=>this._hz()}>
+                                            <Icon name='repeat' type='Feather'></Icon>
+                                            <Text style={{fontSize: 12}}>换桌</Text>
+                                        </Button>
+                                    </View>
+                                ):null}
                             </View>
 
-                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                <View>
-                                    <Button style={{
-                                        backgroundColor: Color.tableIndex.photoBg,
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        height: 100,
-                                        borderRadius: 20
-                                    }}>
-                                        <Icon name='file-text' type='Feather' style={{fontSize: 32}}></Icon>
-                                        <Text>打印结账单</Text>
-                                    </Button>
+                            {this.state.t && this.state.t.order_id>0?(
+                                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                                    <View>
+                                        <Button style={{
+                                            backgroundColor: Color.tableIndex.photoBg,
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            height: 100,
+                                            borderRadius: 20
+                                        }}>
+                                            <Icon name='file-text' type='Feather' style={{fontSize: 32}}></Icon>
+                                            <Text>打印结账单</Text>
+                                        </Button>
+                                    </View>
                                 </View>
-                            </View>
+                            ):null}
 
                             <View style={{flexDirection: 'row'}}>
-                                <View style={{marginRight: 90}}>
-                                    <Button style={{
-                                        backgroundColor: Color.tableIndex.photoBg,
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        width: 80,
-                                        height: 80,
-                                        borderRadius: 20
-                                    }}>
-                                        <Icon name='coin' type='MaterialCommunityIcons'></Icon>
-                                        <Text style={{fontSize: 12}}>合并结账</Text>
-                                    </Button>
-                                </View>
-                                <View>
-                                    <Button style={{
-                                        backgroundColor: Color.tableIndex.photoBg,
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        width: 80,
-                                        height: 80,
-                                        borderRadius: 20
-                                    }}>
-                                        <Icon name='list' type='Feather'></Icon>
-                                        <Text style={{fontSize: 12}}>打印菜单</Text>
-                                    </Button>
-                                </View>
+                                {this.state.t && this.state.t.order_id>0?(
+                                    <View style={{marginRight: 90}}>
+                                        <Button style={{
+                                            backgroundColor: Color.tableIndex.photoBg,
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            width: 80,
+                                            height: 80,
+                                            borderRadius: 20}} onPress={()=>this._pt(2)}>
+                                            <Icon name='coin' type='MaterialCommunityIcons'></Icon>
+                                            <Text style={{fontSize: 12}}>合并结账</Text>
+                                        </Button>
+                                    </View>
+                                ):null}
+                                {this.state.t && this.state.t.order_id>0?(
+                                    <View>
+                                        <Button style={{
+                                            backgroundColor: Color.tableIndex.photoBg,
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            width: 80,
+                                            height: 80,
+                                            borderRadius: 20}}>
+                                            <Icon name='list' type='Feather'></Icon>
+                                            <Text style={{fontSize: 12}}>打印菜单</Text>
+                                        </Button>
+                                    </View>
+                                ):null}
                             </View>
                         </View>
                     </View>
@@ -685,24 +710,17 @@ export default class Index extends MyLeft {
                                     borderWidth: 1,
                                     borderColor: '#fff',
                                     flexDirection: 'row',
-                                    alignItems: 'center',
-                                    alignItems: 'center'
-                                }}>
+                                    alignItems: 'center'}}>
                                     <Picker
                                         style={{height: 40, color: '#ffffff'}}
-                                        selectedValue={this.state.selected}
-                                        onValueChange={() => {
-                                            this.setState({selected: this.state.selected});
-                                        }}
-                                    >
-                                        <Picker.Item label="周长城" value="key0"/>
-                                        <Picker.Item label="周长城" value="key1"/>
-                                        <Picker.Item label="周长城" value="key2"/>
-                                        <Picker.Item label="周长城" value="key3"/>
-                                        <Picker.Item label="周长城" value="key4"/>
+                                        selectedValue={this.state.waiter_id}
+                                        onValueChange={e=>this.setState({waiter_id: e})}>
+                                        {this.state.waiters.map((v, k)=>{
+                                            return <Picker.Item label={v.name} value={v.id}/>
+                                        })}
                                     </Picker>
                                     <Icon name='md-arrow-dropdown' type='Ionicons'
-                                          style={{color: '#fff', marginRight: 10, fontSize: 20}}></Icon>
+                                          style={{color: '#fff', marginRight: 10, fontSize: 20}}/>
                                 </View>
                             </View>
 
@@ -713,8 +731,7 @@ export default class Index extends MyLeft {
                                         width: 120,
                                         backgroundColor: '#8dc23c',
                                         borderRadius: 40,
-                                        justifyContent: 'center'
-                                    }}>
+                                        justifyContent: 'center'}} onPress={()=>this._begin(2)}>
                                         <Text style={{color: '#fff'}}>开台</Text>
                                     </Button>
                                 </View>
@@ -723,22 +740,146 @@ export default class Index extends MyLeft {
 
                     </View>
                 </Modal>
+                {/*换台*/}
+                <Modal animationType={'fade'} visible={this.state.zt6}
+                       onRequestClose={() => this.setState({zt6: false})} transparent={true}>
+                    <View style={{backgroundColor: 'rgba(0,0,0,.5)', height: HEIGHT, width: WIDTH, justifyContent:'center', alignItems:'center'}}>
+                        <View style={{width: WIDTH/2, height: HEIGHT-100, backgroundColor: 'white'}}>
+                            <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+                                <Text style={{fontSize: 20}}>换桌（{this.state.t?this.state.t.name:''}）</Text>
+                            </View>
+                            <Text style={{backgroundColor:Color.tableIndex.photoBg, height: 1}}/>
+                            <View style={{flex:10}}>
+                                <FlatList data={this.state.can} numColumns={4} columnWrapperStyle={{justifyContent:'center'}}
+                                          renderItem={({item}) => this._item2(item)} keyExtractor={({v, k}) => k} extraData={this.state}/>
+                            </View>
+                            <View style={{flex:1, flexDirection:'row'}}>
+                                <View style={{justifyContent:'center', alignItems:'center',flex:1}}>
+                                    <Text style={{color: 'black', padding: 100}} onPress={()=>this.setState({zt6: false})}>
+                                        取消
+                                    </Text>
+                                </View>
+                                <View style={{justifyContent:'center', alignItems:'center',flex:1, backgroundColor: Color.tableIndex.photoBg}}>
+                                    <Text style={{color: 'white', padding: 100}} onPress={()=>this._sureHz()}>
+                                        确定
+                                    </Text>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+                {/*并桌*/}
+                <Modal animationType={'fade'} visible={this.state.zt7}
+                       onRequestClose={() => this.setState({zt7: false})} transparent={true}>
+                    <View style={{backgroundColor: 'rgba(0,0,0,.5)', height: HEIGHT, width: WIDTH, justifyContent:'center', alignItems:'center'}}>
+                        <View style={{width: WIDTH/2, height: HEIGHT-100, backgroundColor: 'white'}}>
+                            <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+                                <Text style={{fontSize: 20}}>拼台（{this.state.t?this.state.t.name:''}）</Text>
+                            </View>
+                            <Text style={{backgroundColor:Color.tableIndex.photoBg, height: 1}}/>
+                            <View style={{flex:10}}>
+                                <FlatList data={this.state.can} numColumns={4} columnWrapperStyle={{justifyContent:'center'}}
+                                          renderItem={({item}) => this._item3(item)} keyExtractor={({v, k}) => k} extraData={this.state}/>
+                            </View>
+                            <View style={{flex:1, flexDirection:'row'}}>
+                                <View style={{justifyContent:'center', alignItems:'center',flex:1}}>
+                                    <Text style={{color: 'black', padding: 100}} onPress={()=>this.setState({zt7: false})}>
+                                        取消
+                                    </Text>
+                                </View>
+                                <View style={{justifyContent:'center', alignItems:'center',flex:1, backgroundColor: Color.tableIndex.photoBg}}>
+                                    <Text style={{color: 'white', padding: 100}} onPress={()=>this.setState({zt4: true})}>
+                                        确定
+                                    </Text>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
 
+                {/*合并订单*/}
+                <Modal animationType={'fade'} visible={this.state.zt8}
+                       onRequestClose={() => this.setState({zt8: false})} transparent={true}>
+                    <View style={{backgroundColor: 'rgba(0,0,0,.5)', height: HEIGHT, width: WIDTH, justifyContent:'center', alignItems:'center'}}>
+                        <View style={{width: WIDTH/2, height: HEIGHT-100, backgroundColor: 'white'}}>
+                            <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+                                <Text style={{fontSize: 20}}>合并支付（{this.state.t?this.state.t.name:''}）</Text>
+                            </View>
+                            <Text style={{backgroundColor:Color.tableIndex.photoBg, height: 1}}/>
+                            <View style={{flex:10}}>
+                                <FlatList data={this.state.can} numColumns={4} columnWrapperStyle={{justifyContent:'center'}}
+                                          renderItem={({item}) => this._item3(item)} keyExtractor={({v, k}) => k} extraData={this.state}/>
+                            </View>
+                            <View style={{flex:1, flexDirection:'row'}}>
+                                <View style={{justifyContent:'center', alignItems:'center',flex:1}}>
+                                    <Text style={{color: 'black', padding: 100}} onPress={()=>this.setState({zt8: false})}>
+                                        取消
+                                    </Text>
+                                </View>
+                                <View style={{justifyContent:'center', alignItems:'center',flex:1, backgroundColor: Color.tableIndex.photoBg}}>
+                                    <Text style={{color: 'white', padding: 100}} onPress={()=>this._merge()}>
+                                        确定
+                                    </Text>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
             </View>
-
         );
     }
 
     _item(item) {
         return (
             <TouchableOpacity onPress={()=>this._event(item)}>
-                <View style={{width: 100, height: 100, backgroundColor: 'white', padding: 5, margin: 5}}>
+                <View style={{width: 100, height: 100, backgroundColor: 'white', padding: 5, margin: 5, elevation: 2}}>
+                    <View style={{flex: 1}}>
+                        <Text onLongPress={()=>this.setState({zt1: true, t: item})}>{item.name}</Text>
+                    </View>
+                    {item.order_id>0?<View>
+                        <Text>{item.people_number}人</Text>
+                        <Text style={{fontSize: 13}}>&yen;{item.order.original_amount}</Text>
+                        <ImageBackground style={{width: 30, height: 30, position: 'absolute', right: 0, bottom: 0}} source={require('../bg/Coder_03.png')}/>
+                    </View>:null}
+                </View>
+            </TouchableOpacity>
+        )
+    }
+
+    _item2(item, k) {
+        return (
+            <TouchableOpacity onPress={()=>{
+                for(let v of this.state.can) {
+                    v.zt = false;
+                    if(item.id == v.id) {
+                        v.zt = true;
+                    }
+                }
+                this.setState({can: this.state.can, nowCan: item});
+            }}>
+                <View style={{width: 100, height: 100, backgroundColor: item.zt?Color.tableIndex.photoBg:'white', padding: 5, margin: 5, elevation: 2}}>
                     <View style={{flex: 1}}>
                         <Text>{item.name}</Text>
                     </View>
-                    {item.order_id>0?<Text>{item.people_number}人</Text>:null}
-                    {item.order_id > 0 ? <Text style={{fontSize: 13}}>&yen;{item.order.original_amount}</Text> : null}
-                    {item.order_id>0?<ImageBackground style={{width: 30, height: 30, position: 'absolute', right: 0, bottom: 0}} source={require('../bg/Coder_03.png')}/>:null}
+                </View>
+            </TouchableOpacity>
+        )
+    }
+
+    _item3(item, k) {
+        return (
+            <TouchableOpacity onPress={()=>{
+                for(let v of this.state.can) {
+                    if(item.id == v.id) {
+                        v.zt = !v.zt;
+                    }
+                }
+                this.setState({can: this.state.can});
+            }}>
+                <View style={{width: 100, height: 100, backgroundColor: item.zt?Color.tableIndex.photoBg:'white', padding: 5, margin: 5, elevation: 2}}>
+                    <View style={{flex: 1}}>
+                        <Text>{item.name}</Text>
+                    </View>
                 </View>
             </TouchableOpacity>
         )
@@ -747,35 +888,125 @@ export default class Index extends MyLeft {
     _event(item) {
         if(item.order_id>0) {
             //其他操作
+            //this.setState({zt1: true});
+            table = item;
+            this.props.navigation.navigate("meal");
         }else{
             //开台
             this.setState({zt4: true});
         }
+        this.setState({t: item})
     }
 //开台
-    _begin() {
-        this._post(request.Save, {waiter: this.state.waiterId, table: tableId, source: 'ipad'})
-            .then(rs=>{
-                console.log(rs, '开台');
-            });
-        /*fetch(ym+request.Save, {
-            method: "POST", body: JSON.stringify({waiter: this.state.waiterId, table: tableId, source: 'ipad'})
-        }).then(r=>r.json()).then(rs=>{
-            console.log(rs)
-        }).catch(e=>{
-            console.log(e)
-        })*/
+    _begin(type=1) {
+        if(type==1) {
+            if(this.state.waiter_id==0 || parseInt(this.state.num)<=0) {
+                alert('请填完以上信息');
+                return;
+            }
+            this._post(request.Save, {waiter: this.state.waiter_id, table: this.state.t.id, source: 'ipad', people_number: this.state.num})
+                .then(rs=>{
+                    if(rs.errCode==0) {
+                        this._getTables();
+                        this.setState({zt4: false});
+                        this._success("开台成功");
+                    }else{
+                        this._error(rs);
+                    }
+                    console.log(rs, '开台');
+                });
+        }else{
+            this._surePt();
+        }
     }
     //服务员列表
     _getWaiters() {
         this._get(request.WaiterList)
             .then(rs=>{
+                this.setState({waiters: rs.data});
+                Waiters = rs.data;
                 console.log(rs, '服务员列表');
             });
-        /*fetch(ym+request.WaiterList+'?token='+userInfo.app_token).then(rs=>{
-            console.log(rs)
-        }).catch(e=>{
-            console.log(e)
-        })*/
+    }
+
+    _sureHz() {
+        this._post(request.change_table, {order_id: this.state.t.order_id, old_table: this.state.t.id, new_table: this.state.nowCan.id})
+            .then(rs=>{
+                if(rs.errCode==0) {
+                    this._success('换台成功');
+                    this._getTables();
+                    this.setState({zt6: false});
+                }else{
+                    this._error(rs);
+                }
+                console.log(rs)
+            })
+    }
+
+    _pt(type=1) {
+        let t = [];
+        for(let v of this.state.bfTables) {
+            if(type==1 && v.order_id == 0 && v.id !== this.state.t.id) {
+                v.zt = false;
+                t.push(v);
+            }else if(type==2 && v.order_id > 0 && v.id !== this.state.t.id){
+                v.zt = false;
+                t.push(v);
+            }
+        }
+        if(type==1) {
+            this.setState({can: t, zt7: true});
+        }else{
+            this.setState({can: t, zt8: true});
+        }
+    }
+    _surePt() {
+        let t = '';
+        for(let v of this.state.can){
+            if(v.zt) {
+                t += v.id+',';
+            }
+        }
+        if(t=='') {
+            alert('请选择餐台');
+            return;
+        }
+        t += this.state.t.id;
+        this._post(request.Save, {waiter: this.state.waiter_id, table: t, source: 'ipad', people_number: this.state.num})
+            .then(rs=>{
+                if(rs.errCode==0) {
+                    this._getTables();
+                    this.setState({zt4: false, zt7: false});
+                    this._success("开台成功");
+                }else{
+                    this._error(rs);
+                }
+                console.log(rs, '开台');
+            });
+    }
+
+    _merge() {
+        let arr = [];
+        for(let v of this.state.can){
+            if(v.zt) {
+                arr.push(v);
+            }
+        }
+        if(arr.length<=0) {
+            alert('请选择餐台');
+            return;
+        }
+        arr.push(this.state.t);
+        this._post(request.Merge, {tables: arr})
+            .then(rs=>{
+                if(rs.errCode==0) {
+                    this._getTables();
+                    this.setState({zt8: false, zt7: false});
+                    this._success("合并成功");
+                }else{
+                    this._error(rs);
+                }
+                console.log(rs, '合并');
+            });
     }
 }
