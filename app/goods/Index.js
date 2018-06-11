@@ -14,10 +14,11 @@ import Purchase from "./Purchase";
 import Top from "../common/Top";
 
 export default class Bg extends MyLeft {
+
     constructor(props) {
         super(props);
         Object.assign(this.state, {
-            type: 4,
+            type: 3,
             nowNav: 2,
             leftClassify: [
                 {name:'商品管理', type: 1},
@@ -52,6 +53,16 @@ export default class Bg extends MyLeft {
                 </View>
             </ScrollView>
         )
+    }
+
+    _get(method, params) {
+        return fetch(`${ym+method}?token=${userInfo.app_token}&${params}`).then(r=>r.json())
+            .then(rs=>{
+                return rs;
+            }).catch(e=>{
+                return e;
+            })
+
     }
 }
 

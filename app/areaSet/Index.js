@@ -15,7 +15,7 @@ export default class Index extends MyLeft {
     constructor(props) {
         super(props);
         Object.assign(this.state, {
-            type: 1,
+            type: 2,
             nowNav: 3,
             leftClassify: [
                 {name: '区域配置', type: 1},

@@ -2,35 +2,103 @@ import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
-    View, Switch, FlatList, ImageBackground,
+    View, Switch, FlatList, ImageBackground,Modal,Alert,
+    ToastAndroid
 } from 'react-native';
-import { Text, Thumbnail, Icon, Item, Input, Button } from 'native-base';
+import { Text, Thumbnail, Icon, Item, Input, Button,Radio } from 'native-base';
 import Color from "../common/Color";
+import MyLeft from "../common/Left";
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 
-export default class Area extends Component {
+export default class Area extends MyLeft {
     constructor(props) {
         super(props);
         this.state = {
             tableHead: ['名称', '简介', '空闲/总数', '管理'],
             tableData: [
-                ['用餐区', '法国进口AOC级红酒 尚娜德西拉干红葡萄酒', '324/675', ''],
-                ['红酒区', '法国进口AOC级红酒 尚娜德西拉干红葡萄酒', '324/675', ''],
-                ['烟酒区', '法国进口AOC级红酒 尚娜德西拉干红葡萄酒', '324/675', ''],
-                ['茶房', '法国进口AOC级红酒 尚娜德西拉干红葡萄酒', '324/675', ''],
-                ['包房', '法国进口AOC级红酒 尚娜德西拉干红葡萄酒', '324/675', ''],
-                ['用餐区', '法国进口AOC级红酒 尚娜德西拉干红葡萄酒', '324/675', ''],
-                ['用餐区', '法国进口AOC级红酒 尚娜德西拉干红葡萄酒', '324/675', ''],
-            ]
+            ],
+            zt:false,
+            areaData:[],
+            areaDetail:{}
         };
     }
+
+    _post1(method, params, url_param = '') {
+        var url = `${ym+method}?token=${userInfo.app_token}`;
+        if(url_param) {
+            url += url_param;
+        }
+        return fetch(url, {
+            method: "POST", body: JSON.stringify(params)
+        }).then(r=>r.json())
+            .then(rs=>{
+                return rs;
+            }).catch(e=>{
+                return e;
+            })
+    }
+
+    componentDidMount(){
+        this._getArea();
+    }
+
+    _getArea(){
+        this._get(request2.shopTable,'action=list&type=table_area').then(rs=>{
+            console.log(rs);
+            if(rs.errCode == 0){
+                var emptyArr = [];
+                for(let i of rs.data.list){
+                    var tableAra = [];
+                    tableAra.push(i.name);
+                    tableAra.push('法国进口AOC级红酒 尚娜德西拉干红葡萄酒');
+                    tableAra.push( '324/675');
+                    tableAra.push(i.id);
+                    emptyArr.push(tableAra);
+                }
+                this.setState({tableData:emptyArr,areaData:rs.data.list});
+                console.log(this.state.tableData);
+            }
+        })
+    }
+
+    _getclassDetail(data,index){
+
+        this.state.areaDetail = this.state.areaData[index];
+        this.setState({areaDetail:this.state.areaDetail,zt:true})
+        console.log(this.state.areaDetail);
+    }
+
+    _areaSet() {
+        console.log(this.state.areaDetail);
+        this._post1(request2.shopTable, {data: this.state.areaDetail}, '&action=save&type=table_area_edit').then(rs => {
+            console.log(rs);
+            if(rs.errCode == 0){
+                Alert.alert("提示","修改成功");
+                this.setState({zt:false})
+                this._getArea();
+            }
+        })
+    }
+
+    _del(data,index) {
+        var id = this.state.areaData[index].id;
+        this._post1(request2.shopTable, {id: id}, '&action=del&type=table_area').then(rs => {
+            if(rs.errCode == 0){
+                Alert.alert("提示","删除成功");
+                this._getArea();
+            }
+        })
+    }
+
+
+
 
     render() {
         const state = this.state;
         const element = (data, index) => (
             <View style={{justifyContent:'center', alignItems:'center', flexDirection: 'row'}}>
-                <Button transparent><Text>查看</Text></Button>
-                <Button transparent><Text>删除</Text></Button>
+                <Button transparent onPress={()=>this. _getclassDetail(data,index)}><Text>查看</Text></Button>
+                <Button transparent onPress={()=>this._del(data,index)}><Text>删除</Text></Button>
             </View>
         );
         return(
@@ -66,6 +134,64 @@ export default class Area extends Component {
                         }
                     </Table>
                 </View>
+
+                <Modal animationType={'fade'} visible={this.state.zt} onRequestClose={()=>this.setState({zt: false})} transparent={true}>
+                    <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'rgba(0,0,0,0.5)'}}>
+                        <View style={{width:WIDTH/2,backgroundColor:'#fff'}}>
+
+                            <View style={{height:50,flexDirection:'row',backgroundColor:'#8DC23C',alignItems:'center'}}>
+                                <Text style={{color:'#fff',paddingLeft:30}}>区域设置</Text>
+                            </View>
+
+                            <View style={{flexDirection:'row',alignItems:'center',height:60}}>
+                                <Text style={{color:'#666',fontSize:14,marginLeft:30}}>区域名称：</Text>
+                                <Item rounded style={{height:40,borderRadius:5,width:300}}>
+                                    <Input placeholder="请输入区域名称" style={{color:'#666',fontSize:14}} value={this.state.areaDetail.name}  onChangeText={e=>{
+                                        this.state.areaDetail.name = e;
+                                        this.setState({areaDetail:this.state.areaDetail})
+                                    }}/>
+                                </Item>
+                            </View>
+
+                            <View style={{flexDirection:'row',alignItems:'center',height:60}}>
+                                <Text style={{color:'#666',fontSize:14,marginLeft:30}}>最低消费：</Text>
+                                <Item rounded style={{height:40,borderRadius:5,width:300}}>
+                                    <Input style={{color:'#666',fontSize:14}} keyboardType="numeric" value={this.state.areaDetail.low_amount}  onChangeText={e=>{
+                                        this.state.areaDetail.low_amount = e;
+                                        this.setState({areaDetail:this.state.areaDetail})
+                                    }}/>
+                                </Item>
+                            </View>
+
+                            <View style={{flexDirection:'row',alignItems:'center',height:50}}>
+                                <Text style={{color:'#666',fontSize:14,marginLeft:30}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：</Text>
+                                <Radio selected={this.state.areaDetail.status == 0} color="#666666" selectedColor="#1c91d1" onPress={()=>{
+                                    this.state.areaDetail.status = 0;
+                                    this.setState({goodDetail:this.state.goodDetail});
+                                }} />
+                                <Text style={{color: this.state.areaDetail.status == 0 ? '#1c91d1' : '#666',paddingRight:15,fontSize:14}}>禁用</Text>
+                                <Radio selected={this.state.areaDetail.status == 1} color="#666666" selectedColor="#1c91d1" onPress={()=>{
+                                    this.state.areaDetail.status = 1;
+                                    this.setState({areaDetail:this.state.areaDetail});
+                                }} />
+                                <Text style={{color: this.state.areaDetail.status == 1 ? '#1c91d1' : '#666',fontSize:14}}>正常</Text>
+                            </View>
+
+                            <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginBottom:10,height:60}}>
+                                <View style={{marginRight:50}}>
+                                    <Button style={{backgroundColor:'#fa7159',height:35}} onPress={()=>this._areaSet()}>
+                                        <Text style={{color:'#fff',paddingLeft:30,paddingRight:30,fontSize:14}}>确定</Text>
+                                    </Button>
+                                </View>
+                                <View>
+                                    <Button style={{backgroundColor:'#b3b3b3',height:35}}>
+                                        <Text style={{color:'#fff',paddingLeft:30,paddingRight:30,fontSize:14}} onPress={()=>{this.setState({zt:false})}}>取消</Text>
+                                    </Button>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         )
     }
